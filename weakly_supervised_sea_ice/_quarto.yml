@@ -21,6 +21,8 @@ book:
   chapters:
     - index.qmd
     - intro.qmd
+    - sea_ice_background.qmd
+    - background.qmd
     - data.qmd
     - methods.qmd
     - summary.qmd

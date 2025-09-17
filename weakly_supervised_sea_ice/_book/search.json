@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Sea Ice Classification with Weakly Supervised Learning",
     "section": "",
-    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
+    "text": "Preface\nThis Quarto Book provides background and resources for the NSF Funded Collaborations in Artificial Intelligence and Geosciences (CAIG) project Weakly Supervised Learning to Address Label-Data Irregularities in Sea-Ice Classification. This is a three year collaboration between University of Colorado Denver Computer Science and the National Snow and Ice Data Center (NSIDC).\nThe introduction provides an overview of the project. The Data section provides a description of the data used in the project. The Methods section describes our approaches to the problem.",
     "crumbs": [
       "Preface"
     ]
@@ -14,7 +14,7 @@
     "href": "intro.html",
     "title": "1  Introduction",
     "section": "",
-    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "text": "1.1 The Problem\nSea ice plays a critical role in the global climate system and maritime operations. Accurate and timely sea ice mapping and classification is essential for climate monitoring, navigation safety, and environmental decision-making. Manual sea ice mapping is slow and unscalable. Hence, the sea ice community is actively researching approaches to automate this process. Satellite imagery offers broad coverage of polar regions for data-driven automated sea ice classification; however, advanced deep learning methods for sea ice classification depend on labeled data, which are costly and time-consuming to generate. Despite significant advances in remote sensing and deep learning, the performance and reliability of sea ice classification models remain heavily constrained by the quality of the existing labeled data.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -42,11 +42,11 @@
   {
     "objectID": "data.html",
     "href": "data.html",
-    "title": "2  Data",
+    "title": "3  Data",
     "section": "",
-    "text": "2.1 Overview\nA description of the data we are using",
+    "text": "3.1 Overview\nA description of the data we are using",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data</span>"
     ]
   },
   {
@@ -72,21 +72,61 @@
   {
     "objectID": "data.html#sea-ice-charts",
     "href": "data.html#sea-ice-charts",
-    "title": "2  Data",
-    "section": "2.3 Sea Ice Charts",
-    "text": "2.3 Sea Ice Charts",
+    "title": "3  Data",
+    "section": "3.3 Sea Ice Charts",
+    "text": "3.3 Sea Ice Charts",
     "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data</span>"
     ]
   },
   {
     "objectID": "data.html#sentinel-1-sar",
     "href": "data.html#sentinel-1-sar",
+    "title": "3  Data",
+    "section": "3.2 Sentinel-1 SAR",
+    "text": "3.2 Sentinel-1 SAR",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#the-problem",
+    "href": "intro.html#the-problem",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "data.html#ai4ice",
+    "href": "data.html#ai4ice",
     "title": "2  Data",
-    "section": "2.2 Sentinel-1 SAR",
-    "text": "2.2 Sentinel-1 SAR",
+    "section": "2.4 AI4ICE",
+    "text": "2.4 AI4ICE",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data</span>"
+    ]
+  },
+  {
+    "objectID": "data.html#ai4ice-dataset",
+    "href": "data.html#ai4ice-dataset",
+    "title": "3  Data",
+    "section": "3.4 AI4ICE Dataset",
+    "text": "3.4 AI4ICE Dataset",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Data</span>"
+    ]
+  },
+  {
+    "objectID": "background.html",
+    "href": "background.html",
+    "title": "3  Machine Learning Methods for Sea Ice Mapping",
+    "section": "",
+    "text": "A review of machine learning methods for sea ice mapping from traditional machine learning to deep neural networks.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Machine Learning Methods for Sea Ice Mapping</span>"
     ]
   }
 ]

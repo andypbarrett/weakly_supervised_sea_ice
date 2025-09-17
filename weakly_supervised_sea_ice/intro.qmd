@@ -1,5 +1,4 @@
 # Introduction
 
-This is a book created from markdown and executable code.
-
-See @knuth84 for additional discussion of literate programming.
+## The Problem
+Sea ice plays a critical role in the global climate system and maritime operations. Accurate and timely sea ice mapping and classification is essential for climate monitoring, navigation safety, and environmental decision-making. Manual sea ice mapping is slow and unscalable. Hence, the sea ice community is actively researching approaches to automate this process. Satellite imagery offers broad coverage of polar regions for data-driven automated sea ice classification; however, advanced deep learning methods for sea ice classification depend on labeled data, which are costly and time-consuming to generate. Despite significant advances in remote sensing and deep learning, the performance and reliability of sea ice classification models remain heavily constrained by the quality of the existing labeled data.

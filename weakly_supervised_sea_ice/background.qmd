@@ -1,0 +1,3 @@
+# Machine Learning Methods for Sea Ice Mapping
+
+A review of machine learning methods for sea ice mapping from traditional machine learning to deep neural networks.
