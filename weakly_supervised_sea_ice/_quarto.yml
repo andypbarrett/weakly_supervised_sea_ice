@@ -1,0 +1,40 @@
+project:
+  type: book
+
+book:
+  title: "Sea Ice Classification with Weakly Supervised Learning"
+  author: 
+    - name: Andrew P Barrett
+      orcid: 0000-0002-5206-2503
+      email: andrew.barrett@colorado.edu
+    - name: Farnoush Banaei Kashani
+      orcid: 0000-0002-7781-8233
+      email: FARNOUSH.BANAEI-KASHANI@UCDENVER.EDU
+    - name: Younghyun Koo
+      orcid: 0000-0002-8723-45601
+      email: Younghyun.Koo@colorado.edu
+    - name: Samira Alkaee Taleghan
+      orcid: 0000-0002-8723-45601
+      email: SAMIRA.ALKAEETALEGHAN@UCDENVER.EDU
+  date: last-modified
+  date-format: iso
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - data.qmd
+    - methods.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+  pdf:
+    documentclass: scrreprt
+
+
+
