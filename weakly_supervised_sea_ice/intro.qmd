@@ -2,3 +2,11 @@
 
 ## The Problem
 Sea ice plays a critical role in the global climate system and maritime operations. Accurate and timely sea ice mapping and classification is essential for climate monitoring, navigation safety, and environmental decision-making. Manual sea ice mapping is slow and unscalable. Hence, the sea ice community is actively researching approaches to automate this process. Satellite imagery offers broad coverage of polar regions for data-driven automated sea ice classification; however, advanced deep learning methods for sea ice classification depend on labeled data, which are costly and time-consuming to generate. Despite significant advances in remote sensing and deep learning, the performance and reliability of sea ice classification models remain heavily constrained by the quality of the existing labeled data.
+
+Almost all label data comes from _ice charts_ produced by national ice information services such as the US National Ice Center (USNIC), Canadian Ice Service (CIS) and Danish Meteorlogical Institute (DMI). Ice Charts (along with other sea ice products) are produced   
+
+## Thrust 1: Ill Formed Labels
+
+## Thrust 2: Inaccurate Labels
+
+## Thrust 3: Inadequate Labels
