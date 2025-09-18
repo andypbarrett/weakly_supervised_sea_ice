@@ -1,1 +1,52 @@
 # Sea Ice
+
+Sea ice is any form of floating ice found at sea that has formed from the freezing of sea water.
+
+## Growth of Sea Ice
+
+## Decay of Sea Ice
+
+## Stages of Development
+
+The descriptions of the stages of development are taken from the WMO Nomenclature of Sea Ice and the Canadian ECCC MANICE.  Many of the descriptions are based on the visual appearance of the ice, as well as the tickness.  This reflects the history of ice observations being ship- or shore-based, and later from reconnaisance aircraft.
+
+### New Ice
+
+Recently formed ice that icludes _frazil ice_, _grease ice_, _slush_, and _shuga_.  The types of ice are formed from ice crystals that are only weakly frozen together.
+
+- Frazil Ice: fine spicules or plates of ice suspended in water
+- Grease Ice: a later stage of freezing where frazil ice crystals have coagulated to form a soupy layer of the surface.  Grease ice does not reflect much light and gives the water surface a matte appearance.
+- Slush: Snow that is saturated and mixed with water on the sea ice surface or as a floating mass just after a heavy snowfall.
+- Shuga: spongy white ice clumps a few centimeters across.  They are generally formed from _grease ice_ or _slush_.
+
+### Nilas
+
+A thin elastic "skin" (crust) of ice that flexes on waves and swell that grows as interlocking fingers.  Nilas has a matte surface and may be up to 10 cm thick.  Nilas is separated into _dark nilas_ and _light nilas_.
+
+- Dark Nilas: _nilas_ up to 5 cm in thickness and dark in color.
+- Light Nilas: _nilas_ that is more than 5 cm thick and lighter in colour that dark nilas.
+- Ice Rind: a brittle, shiney crust of ice formed on a calm surface, either from direct freezing or from _grease ice_.  It often occurs in water with low salinity.  Ice rind is about 5 cm thick and easily broken into, usually, rectangular pieces by wind or swell.
+
+### Young Ice
+
+Young ice is the transitional stage between _nilas_ and _first-year ice_.  It is between 10 and 30 cm thick.  It is divided into _grey ice_ and _grey-white ice_.
+
+- Grey Ice: _Young ice_ between 10 and 15 cm thick.  _Grey ice_ is less elastic than nilas and breaks in swell.  It usually rafts under pressure.
+- Grey-white ice: _Young ice_ that is 15 to 30 cm thick.  Under pressure, it is more likely to ridge than raft.
+
+### First Year Ice
+
+_First-year ice_ is sea ice that has no more than one winters growth.  It develops from _young ice_ and is more than 30 cm thick.  _First-year ice_ can be divided into _thin first-year ice (sometimes called _white-ice_), _medium first year ice_, and _thick first year ice_.
+
+- **Thin First-year Ice/White Ice - First Stage**: 30 to 50 cm thick
+- **Thin First-year Ice/White Ice - Second Stage**: 50 to 70 cm thick
+- **Medium First-year Ice**: 70 to 120 cm thick.
+- **Thick First-year Ice**: Greater than 120 cm thick.
+
+### Old Ice
+
+
+## Resources
+
+[WMO Sea Ice Nomenclature (WMO-No 259)](https://library.wmo.int/viewer/41953/download?file=259-2015_multilingual.pdf&type=pdf&navigator=1)
+[ECCC Manual of Ice (MANICE)](https://www.canada.ca/en/environment-climate-change/services/weather-manuals-documentation/manice-manual-of-ice.html)
