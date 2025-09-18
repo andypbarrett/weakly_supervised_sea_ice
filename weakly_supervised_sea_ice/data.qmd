@@ -9,3 +9,20 @@ A description of the data we are using
 ## Sea Ice Charts
 
 ## AI4ICE Dataset
+
+[Data](https://data.dtu.dk/articles/dataset/AI4Arctic_ASIP_Sea_Ice_Dataset_-_version_2/13011134/3)  
+
+## Other Resources 
+
+[Polar View Arctic Ice Charts](https://www.icelogistics.info/arctic)  
+[U.S. National Ice Center Arctic and Antarctic Sea Ice Charts in SIGRID-3 Format](https://nsidc.org/data/g10013/versions/1)  
+[ICESat-2 Sea Ice Height](https://nsidc.org/data/atl07/versions/6)  
+[ICESat-2 Sea Ice Freeboard](https://nsidc.org/data/atl10/versions/6)  
+[NSIDC Sea Ice Index](https://nsidc.org/data/g02135/versions/4)  
+[Near-Real-Time DMSP SSMIS Daily Polar Gridded Sea Ice Concentrations](https://nsidc.org/data/nsidc-0081/versions/2)  
+[Sea Ice Concentrations from Nimbus-7 SMMR and DMSP SSM/I-SSMIS Passive Microwave Data](https://nsidc.org/data/nsidc-0051/versions/2)  
+[University of Breman Sea Ice](https://seaice.uni-bremen.de/start/)  
+[Copernicus Climate Change Service: Sea Ice](https://climate.copernicus.eu/sea-ice)  
+[OSISAF Sea Ice Products](https://osi-saf.eumetsat.int/products/sea-ice-products)  
+[Quicklook Arctic Weekly EASE-Grid Sea Ice Age, Version 1](https://nsidc.org/data/nsidc-0749/versions/1)  
+[EASE-Grid Sea Ice Age, Version 4](https://nsidc.org/data/nsidc-0611/versions/4)
