@@ -1,3 +1,43 @@
 # Machine Learning Methods for Sea Ice Mapping
 
 A review of machine learning methods for sea ice mapping from traditional machine learning to deep neural networks.
+
+## A list of models used for sea ice mapping
+
+### Traditional Machine Learning
+
+gray-level co-occurrence matrix (GLCM)
+
+Gabor Filters
+
+### Deep Neural Networks
+
+Samira splits methods into patch-based and pixel-based.
+
+Pixel-based methods use encoder-decoder networks with skip connections
+
+Patch-based methods use hierachical feature extraction methods
+
+### Patch-based classification
+
+Assign a single label to one image region or patch.  This is more computationally efficient.
+
+Most have used convolutional neural networks (CNN).
+
+_Questions:_
+
+ 1. Architecture
+ 2. Layers
+ 3. Patch size
+ 4. Number of training images
+ 5. Location of training images
+ 
+Li et al [12] CNN from Gaofen-3 SAR images
+
+Boulze et al [13] CNN
+
+3D-CNN and Squeeze-Excitation (SE) -based networks [@hu2019squeezeandexcitationnetworks] - SE-based networks focus on interdependencies between channels (rather than/as well as) spatial interdependencies and structures.
+
+@rs11182170 computed the gray-level co-occurrence matrix (GLCM).  Use K-nearest-neighbour clustering to identify unlabeled neighbouring that are used to increase/boost/ehance label samples.  Spectral and spatial dimensions are reduced through a correlation based dimension reduction algorithm.  
+
+

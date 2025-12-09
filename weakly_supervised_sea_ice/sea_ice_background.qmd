@@ -1,8 +1,14 @@
 # Sea Ice
 
-Sea ice is any form of floating ice found at sea that has formed from the freezing of sea water.
+## Overview
+
+Sea ice is any form of floating ice found at sea that has formed from the freezing of sea water.  Sea ice is distinct from _lake ice_, which forms at the surface of freshwater lakes; _river ice_, which forms on the surface of rivers; and _glacier ice_ that originates on land and may be found floating at sea as _icebergs_ and _ice shelves_.  Here we focus on _sea ice_.
+
+_Sea ice_ is split into two broad categories: _fast ice_, which forms at and remains along the coast; and _drift ice_, which includes all ice that is not _fast ice_.  The term _drift_, refers to the ice's ability to move freely.  When concentrations are greater than 7/10, _drift ice_ is normally referred to as _pack ice_.  
 
 ## Growth of Sea Ice
+
+Sea ice starts to form when the entire mixed layer has cooled to the freezing point at -1.8 $^\circ\\$C.  
 
 ## Decay of Sea Ice
 
