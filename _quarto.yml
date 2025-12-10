@@ -1,6 +1,10 @@
 project:
   type: book
+  output-dir: docs
 
+execute:
+  freeze: auto
+  
 book:
   title: "Sea Ice Classification with Weakly Supervised Learning"
   author: 
@@ -35,8 +39,8 @@ format:
     theme:
       - cosmo
       - brand
-  pdf:
-    documentclass: scrreprt
+#  pdf:
+#    documentclass: scrreprt
 
 
 
