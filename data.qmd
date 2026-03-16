@@ -4,9 +4,279 @@
 
 A description of the data we are using
 
-## Sentinel-1 SAR
+## Synthetic Aperture Radar
+
+### Overview
+
+Sensors used for sea ice monitoring
+
+Penetration depth
+
+Sensitivity to sea ice types
+
+Sensitivity to snow
+
+### Sentinel-1
+
+**Band**: C-Band
+
+**Channels**: 
+
+**Products**: Ground Range Detected
+
+**Swath Width**:
+
+**Resolution**:
+
+**Revisit**:
+
+**Data Products**
+
+### Radarsat
+
+**Band**: C-Band
+
+**Channels**: 
+
+**Products**: Ground Range Detected
+
+**Swath Width**:
+
+**Resolution**:
+
+**Revisit**:
+
+**Data Products**:
+
+### Radarsat Constellation
+
+**Band**: C-Band
+
+**Channels**: 
+
+**Products**: 
+
+**Swath Width**:
+
+**Resolution**:
+
+**Revisit**:
+
+**Data Products**:
+
+### NISAR
+
+**Band**: L-Band and S-Band
+
+**Channels**: 
+
+**Products**: Ground Range Detected
+
+**Swath Width**:
+
+**Resolution**:
+
+**Revisit time**:
+
+**Data Products**:
+
+## Passive Microwave
+
+### Overview
+
+### AMSR2 Daily Polar Gridded Brightness Temperatures
+
+Daily brightness temperature product produced from the Japanses Aerospace
+Exploration Agency (JAXA) Advanced Microwave Scanning Radiometer 2 (AMSR2) instrument.
+
+**Channels:** 18.7 GHz vertical (v) and horizontal (h), 23.8 GHz (v),
+and 36.5 GHz (v & h).
+
+**Grid Cell Size:** nominally 25 km
+
+**Time Period:** 1 January 2023 to present
+
+[**NSIDC Dataset Landing Page**](https://nsidc.org/data/nsidc-0802)
+
+### DMSP SSM/I and SSMIS Daily Polar Gridded Brightness Temperatures
+
+Daily brightness temperature product produced from orbital swath data
+from the Special Sensor Microwave/Imager (SSM/I) aboard the Defense
+Meteorological Program (DMSP) F8, F11 and F13 platforms, and the
+Special Sensor Microwave Imager/Sounder (SSMIS) aboard DMSP F17 and
+F18.
+
+**Channels:** 19.3 GHz vertical (v) and horizontal (h), 22.2 GHZ (v), 37.0 GHz
+  (v & h), 85.5 GHz (v & h) on SSM/I, and 91.7 GHz (v & h) on SSMIS.
+
+**Grid Cell Size:** 85.5 GHz and 91.7 GHz channel data are gridded to 12.5 km cells, all
+  other channels are gridded to 25 km.
+
+**Resampling method:** A simple drop-in-the-bucket averaging.
+
+**Time Period:** 1978 to present
+
+[**NSIDC Dataset Landing Page**](https://nsidc.org/data/nsidc-0001)
+
+### Calibrated Enhanced-Resolution Passive Microwave Daily EASE-Grid 2.0 Brightness Temperature ESDR
+
+An enhanced-resolution, multi-sensor brightness temperature product
+from passive microwave sensors.  Sensors are:
+
+- Scanning Multichannel Microwave Radiometer (SMMR) on NIMBUS-7
+- Special Sensor Microwave/Imager (SSM/I) on DMSP 5D-2/F8, F10, F11, F13, F14, DMSP 5D-3/F15
+- Special Sensor Microwave Imager/Sounder (SSMIS) on DMSP 5D-3/F16, F17, F18, F19
+- Advanced Microwave Scanning Radiometer - Earth Observing System (AMSR-E) on AQUA
+- Advanced Microwave Scanning Radiometer 2 (AMSR2) on GCOM-W1
+
+**Channels:** multiple, sensor dependent but between 6.6 and 92 GHz
+
+**Grid Cell Size:** 25 km (All),  3.125 km (> 30 GHz), 6.25 km (12 GHz to 30 GHz), 12.5 km (< 12 GHz)
+
+**Resampling Method:** 25 km uses _drop-in-the-bucket_ average, enhanced resultions use Radiometer Version Scatterometer Image Reconstruction (rSIR)
+
+**Time Period:** 1987 to Present depending on sensor (AMSR2 and SSMIS
+  F16, F17, F18 all operational)
+
+**Temporal Frequency:** Twice Daily
+
+**Programmatic Download:**
+```{.python}
+import earthaccess
+
+auth = earthaccess.login()
+
+# Add wildcard search for sensor
+results = earthaccess.search_data(
+    short_name="NSIDC-0630",
+    spatial=(lonmin, lonmax, latmin, latmax),
+    temporal=(date_begin, date_end),
+    )
+
+files = earthaccess.download(results, local_path="./")
+```
+
+## Visible Imagery
+
+### MODIS
+
+The MODIS instrument on-board Terra and Aqua Satellites has MODIS
+Level 1B Calibrated Radiances for the 36 MODIS bands and reflectances
+for solar refelectance bands 1 through 19 and 26.
+
+The MODIS sea ice algorithm uses the following bands from MOD02 MODIS
+Level 1B Calibrated and Geolocated Radiances.  The sea ice algorithm uses the MODIS Land/Water mask, Solar zenith angle, geolocation, and Geoid height from MOD03, and the Unobstructed field of view and day/night glags from MOD35_L2 products.
+
+There are three MOD02 products, each product containing bands for one of the three spatial resolutions.
+
+| MOD02 Product | Resolution (m) | Bands |
+|---------------|----------------|-------|
+| MOD02QKM | 250 | 1, 2 |
+| MOD02HKM | 500 | 3-7 |
+| MOD021KM | 1000 | 8-36 |
+
+
+| Band | Central $\lambda$ ($\mu m$) | Lower $\lambda$ ($\mu m$) | Upper $\lambda$ ($\mu m$) | Resolution (m) | Purpose |
+|------|-----------------------------:|---------------------------:|---------------------------:|------------:|---------|
+| 1 | 0.645 | 0.620 | 0.670 | 250 | Threshold |
+| 2 | 0.865 | 0.841 | 0.876 | 250 | Threshold |
+| 4 | 0.555 | 0.545 | 0.565 | 500 | NDSI |
+| 6 | 1.640 | 1.628 | 1.652 | 500 | NDSI |
+| 31 | 11.03 | 10.780 | 11.280 | 1000 | IST |
+| 32 | 12.02 | 11.770 | 12.270 | 1000 | IST |
+
+Sea ice is assumed to be snow covered and is mapped based on a normalized difference of surface reflectances between bands 4 and 6, the Normalized Difference Snow Index.
+
+$$
+NDSI = \frac{band4 - band6}{band4 + band6}
+$$
+
+Pixels are identified as sea ice if the following criteria pass.
+
+- $NDSI > 4$
+- $band2 > 0.11$
+- $band1 > 0.10$
+
+An Ice Surface Temperature (IST) product is also calculated.  Surface radiances from bands 31 and 32 are first converted to brightness temperatures using a version of the Planck function.
+
+$$
+T_{\lambda} = \frac{c_2 \nu}{ln\left(1 + \left(\frac{e c_2 \nu^3}{E}\right)\right)}
+$$
+
+where $T_{\lambda}$ is brightness temperature in $\mathrm{K}$, $\nu$ is central wavelength in $\mathrm{cm^{-1}}$, E is radiance from the sensor in $\mathrm{m\,W m^{-2}\,sr\,cm^{-4}}$, $e$ is emmissivity, $c_1$ is $1.910659 \times 10^5\: \mathrm{m\, W m^{-2}\, sr\, cm^{-4}}$, and $c_2$ is $1.438833\: \mathrm{cm\, K}$.
+
+IST 
+
+### VIIRS
+
+### Sentinel-2
+
+Sentinel-2 is a multi-spectral imager.
+
+Level 1C and Level 2A granules are 110 km by 110 km geometrically corrected ortho-images projected onto a Universal Transverse Mercator (UTM) CRS.  Geometric corrections remove distortions from surface topography and imaging systems.  Granules are designed to overlap.
+
+Level 1C data are top-of-atmosphere reflectances.  These data are based on Level 1B products that have been radiometrically corrected.  Level 1C products include cloud masks and other QA grids.
+
+Level 2A products are atmospherically corrected surface reflectance products derived from Level 1C products.  In addition to surface reflectance, level 2A products include a Aerosol Optical Thickness (AOT) map, a Water Vapour (WV) map and a Scene Classification (SCL) map.
+
+```{python}
+#| echo: false
+#| label: tbl-sentinel2-bands
+#| tbl-cap: Characteristics of Sentinel-2 Bands
+
+from IPython.display import Markdown
+from tabulate import tabulate
+import json
+
+with open('sentinel2_bands.json', 'r') as f:
+    data = json.load(f)
+
+table = [
+    [entry['short_name'], entry['cell_size_m'], entry['central_wavelength_nm'],
+     entry['band_width_nm'], entry['description']]
+     for entry in data]
+
+Markdown(tabulate(
+    table,
+    headers = ['Band', 'Grid Size (m)', 'Central Wavelength (nm)', 'Bandwidth (nm)', 'Description'],
+    ))
+```
+
+**Grid size**: 10 m, 20 m or 60 m depending on spectral band.
+
+
+**Documentation**: [Sentinel-2 Products](https://sentiwiki.copernicus.eu/web/s2-products#S2Products-Level-1AProductsS2-Products-L1Atrue)
+
+### Sentinel-3
+
+The main objective of the Sentinel-3 mission is to measure sea surface topography with the **Altimetry Surface Topography Mission (STM)**, sea and land surface temperature with the **Sea and Land Surface Temperature Radiometer (SLSTR)**, and ocean and land surface color with the **Ocean and Land Colour Instrument (OLCI)**..
+
+@istomina_updated_2025 used OLCI and SLSTR channels to map melt ponds.
+
+
+#### SLSTR
+
+**Channels**: 2 channels in the visible (555 nm, 660 nm), a near-infrared channel (870 nm) and six thermal infrared channels (1370 to 12000 nm).
+
+**Swath width**: 1470 km for nadir swath scanner and 740 km for oblique swath scanner. 
+
+**Grid Size and Resolution**: Nominal resolution of 500 m.
+
+**Temporal frequency**: mean global revisit time is 1.9 days.  For 3A and 3B the revisit time is 0.9 days at the equator.
+
+#### OLCI
+
+**Channels**: 12 channels in the visible wavelengths spanning 400 nm to 753.75 nm, and 9 channels in the near infrared spanning 761.25 nm to 1020 nm.
+
+**Swath Width**: 1270 km
+
+**Grid Size and Resolution**: the OLCI instrument has a 68.5$^\circ$ field of view.  The nominal spatial resolution is 300m
+
+**Temporal frequency**: Orbital cycle is 27 days.  Revisit time is 2-3 days.
 
 ## Sea Ice Charts
+
+## Altimeters
 
 ## AI4ICE Dataset
 
