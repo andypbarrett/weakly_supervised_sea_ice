@@ -35,4 +35,6 @@ dependencies:
 
  # Quarto
  - quarto
- 
+
+ # Formatting
+ - tabulate
