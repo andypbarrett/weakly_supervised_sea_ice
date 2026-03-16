@@ -1,0 +1,191 @@
+[
+    {
+        "long_name": "Band 1",
+        "short_name": "B01",
+        "cell_size_m": "300",
+        "central_wavelength_nm": "400",
+        "band_width_nm": "15",
+        "use": "Aerosol correction, improved water constituent retrieval.",
+        "description": ""
+    },
+    {
+        "long_name": "Band 2",
+        "short_name": "B02",
+        "cell_size_m": "300",
+        "central_wavelength_nm": "412",
+        "band_width_nm": "10",
+        "use": "Yellow substance and detrital pigments (turbidity).",
+        "description": ""
+    },
+    {
+        "long_name": "Band 3",
+        "short_name": "B03",
+        "cell_size_m": "300",
+        "central_wavelength_nm": "442.5",
+        "band_width_nm": "10",
+        "use": "Chl absorption max., biogeochemistry, vegetation.",
+        "description": ""
+    },
+    {
+        "long_name": "Band 4",
+        "short_name": "B04",
+        "cell_size_m": "300",
+        "central_wavelength_nm": "490",
+        "band_width_nm": "10",
+        "use": "High Chl, other pigments.",
+        "description": ""
+    },
+    {
+        "long_name": "Band 5",
+        "short_name": "B05 (red edge)",
+        "cell_size_m": "300",
+        "central_wavelength_nm": "510",
+        "band_width_nm": "10",
+        "use": "Chl, sediment, turbidity, red tide.",
+        "description": "red edge"
+    },
+    {
+        "long_name": "Band 6",
+        "short_name": "B06",
+        "cell_size_m": "300",
+        "central_wavelength_nm": "560",
+        "band_width_nm": "10",
+        "use": "Chlorophyll reference (Chl minimum).",
+        "description": ""
+    },
+    {
+        "long_name": "Band 7",
+        "short_name": "B07",
+        "cell_size_m": "300",
+        "central_wavelength_nm": "620",
+        "band_width_nm": "10",
+        "use": "Sediment loading.",
+        "description": ""
+    },
+    {
+        "long_name": "Band 8",
+        "short_name": "B08",
+        "cell_size_m": "300",
+        "central_wavelength_nm": "665",
+        "band_width_nm": "10",
+        "use": "Chl (2nd Chl abs. max.), sediment, yellow substance/vegetation.",
+        "description": ""
+    },
+    {
+        "long_name": "Band 9",
+        "short_name": "B09",
+        "cell_size_m": "300",
+        "central_wavelength_nm": "673.75",
+        "band_width_nm": "7.5",
+        "use": "For improved fluorescence retrieval and to better account for smile together with the bands 665 and 680 nm.",
+        "description": ""
+    },
+    {
+        "long_name": "Band 10",
+        "short_name": "B10",
+        "cell_size_m": "300",
+        "central_wavelength_nm": "681.25",
+        "band_width_nm": "7.5",
+        "use": "Chl fluorescence peak, red edge.",
+        "description": ""
+    },
+    {
+        "long_name": "Band 11",
+        "short_name": "B11 (SWIR 1)",
+        "cell_size_m": "300",
+        "central_wavelength_nm": "708.75",
+        "band_width_nm": "10",
+        "use": "Chl fluorescence baseline, red edge transition.",
+        "description": "SWIR 1"
+    },
+    {
+        "long_name": "Band 12",
+        "short_name": "B12 (SWIR 2)",
+        "cell_size_m": "300",
+        "central_wavelength_nm": "753.75",
+        "band_width_nm": "7.5",
+        "use": "O2 absorption/clouds, vegetation.",
+        "description": "SWIR 2"
+    },
+    {
+        "long_name": "Band 13",
+        "short_name": "B13",
+        "cell_size_m": "300",
+        "central_wavelength_nm": "761.25",
+        "band_width_nm": "2.5",
+        "use": "O2 absorption band/aerosol corr.",
+        "description": ""
+    },
+    {
+        "long_name": "Band 14",
+        "short_name": "B14",
+        "cell_size_m": "300",
+        "central_wavelength_nm": "764.375",
+        "band_width_nm": "3.75",
+        "use": "Atmospheric correction.",
+        "description": ""
+    },
+    {
+        "long_name": "Band 15",
+        "short_name": "B15",
+        "cell_size_m": "300",
+        "central_wavelength_nm": "767.5",
+        "band_width_nm": "2.5",
+        "use": "O2A used for cloud top pressure, fluorescence over land.",
+        "description": ""
+    },
+    {
+        "long_name": "Band 16",
+        "short_name": "B16",
+        "cell_size_m": "300",
+        "central_wavelength_nm": "778.75",
+        "band_width_nm": "15",
+        "use": "Atmospheric correction /aerosol correction.",
+        "description": ""
+    },
+    {
+        "long_name": "Band 17",
+        "short_name": "B17",
+        "cell_size_m": "300",
+        "central_wavelength_nm": "865",
+        "band_width_nm": "20",
+        "use": "Atmospheric correction / aerosol correction, clouds, pixel co-registration.",
+        "description": ""
+    },
+    {
+        "long_name": "Band 18",
+        "short_name": "B18",
+        "cell_size_m": "300",
+        "central_wavelength_nm": "885",
+        "band_width_nm": "10",
+        "use": "Water vapour absorption reference band. Common reference band with SLSTR instrument. Vegetation monitoring.",
+        "description": ""
+    },
+    {
+        "long_name": "Band 19",
+        "short_name": "B19",
+        "cell_size_m": "300",
+        "central_wavelength_nm": "900",
+        "band_width_nm": "10",
+        "use": "Water vapour absorption/vegetation monitoring (max. reflectance).",
+        "description": ""
+    },
+    {
+        "long_name": "Band 20",
+        "short_name": "B20",
+        "cell_size_m": "300",
+        "central_wavelength_nm": "940",
+        "band_width_nm": "20",
+        "use": "Water vapour absorption, atmospheric/aerosol correction.",
+        "description": ""
+    },
+    {
+        "long_name": "Band 21",
+        "short_name": "B21",
+        "cell_size_m": "300",
+        "central_wavelength_nm": "1020",
+        "band_width_nm": "40",
+        "use": "Atmospheric/aerosol correction.",
+        "description": ""
+    }
+]

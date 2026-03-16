@@ -1,0 +1,101 @@
+[
+    {
+        "long_name": "Band 1",
+        "short_name": "S1",
+        "cell_size_m": 500.0,
+        "central_wavelength_nm": 555.0,
+        "band_width_nm": 20.0,
+        "use": "",
+        "description": ""
+    },
+    {
+        "long_name": "Band 2",
+        "short_name": "S2",
+        "cell_size_m": 500.0,
+        "central_wavelength_nm": 659.0,
+        "band_width_nm": 20.0,
+        "use": "",
+        "description": ""
+    },
+    {
+        "long_name": "Band 3",
+        "short_name": "S3",
+        "cell_size_m": 500.0,
+        "central_wavelength_nm": 865.0,
+        "band_width_nm": 20.0,
+        "use": "",
+        "description": ""
+    },
+    {
+        "long_name": "Band 4",
+        "short_name": "S4",
+        "cell_size_m": 500.0,
+        "central_wavelength_nm": 1375.0,
+        "band_width_nm": 20.0,
+        "use": "",
+        "description": ""
+    },
+    {
+        "long_name": "Band 5",
+        "short_name": "S5",
+        "cell_size_m": 500.0,
+        "central_wavelength_nm": 1610.0,
+        "band_width_nm": 60.0,
+        "use": "",
+        "description": ""
+    },
+    {
+        "long_name": "Band 6",
+        "short_name": "S6",
+        "cell_size_m": 500.0,
+        "central_wavelength_nm": 2250.0,
+        "band_width_nm": 50.0,
+        "use": "",
+        "description": ""
+    },
+    {
+        "long_name": "Band 7",
+        "short_name": "S7",
+        "cell_size_m": 1000.0,
+        "central_wavelength_nm": 3740.0,
+        "band_width_nm": 380.0,
+        "use": "",
+        "description": "thermal infrared brightness temperature"
+    },
+    {
+        "long_name": "Band 8",
+        "short_name": "S8",
+        "cell_size_m": 1000.0,
+        "central_wavelength_nm": 10850.0,
+        "band_width_nm": 900.0,
+        "use": "",
+        "description": "thermal infrared brightness temperature"
+    },
+    {
+        "long_name": "Band 9",
+        "short_name": "S9",
+        "cell_size_m": 1000.0,
+        "central_wavelength_nm": 12000.0,
+        "band_width_nm": 1000.0,
+        "use": "",
+        "description": "thermal infrared brightness temperature"
+    },
+    {
+        "long_name": "Band 10",
+        "short_name": "F1",
+        "cell_size_m": 1000.0,
+        "central_wavelength_nm": 3740.0,
+        "band_width_nm": 380.0,
+        "use": "fire",
+        "description": "thermal infrared brightness temperature"
+    },
+    {
+        "long_name": "Band 11",
+        "short_name": "F2",
+        "cell_size_m": 1000.0,
+        "central_wavelength_nm": 10850.0,
+        "band_width_nm": 900.0,
+        "use": "fire",
+        "description": "thermal infrared brightness temperature"
+    },
+]

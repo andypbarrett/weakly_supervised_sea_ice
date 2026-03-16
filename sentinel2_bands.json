@@ -1,0 +1,106 @@
+[
+    {
+        "long_name": "Band 1",
+        "short_name": "B01",
+        "cell_size_m": 60.0,
+        "central_wavelength_nm": 443.0,
+        "band_width_nm": 20.0,
+        "description": "coastal and aerosol detection"
+    },
+    {
+        "long_name": "Band 2",
+        "short_name": "B02",
+        "cell_size_m": 10.0,
+        "central_wavelength_nm": 490.0,
+        "band_width_nm": 65.0,
+        "description": "blue"
+    },
+    {
+        "long_name": "Band 3",
+        "short_name": "B03",
+        "cell_size_m": 10.0,
+        "central_wavelength_nm": 560.0,
+        "band_width_nm": 35.0,
+        "description": "green"
+    },
+    {
+        "long_name": "Band 4",
+        "short_name": "B04",
+        "cell_size_m": 10.0,
+        "central_wavelength_nm": 665.0,
+        "band_width_nm": 30.0,
+        "description": "red"
+    },
+    {
+        "long_name": "Band 5",
+        "short_name": "B05",
+        "cell_size_m": 20.0,
+        "central_wavelength_nm": 705.0,
+        "band_width_nm": 15.0,
+        "description": "red edge"
+    },
+    {
+        "long_name": "Band 6",
+        "short_name": "B06",
+        "cell_size_m": 20.0,
+        "central_wavelength_nm": 740.0,
+        "band_width_nm": 15.0,
+        "description": "vegetation"
+    },
+    {
+        "long_name": "Band 7",
+        "short_name": "B07",
+        "cell_size_m": 20.0,
+        "central_wavelength_nm": 783.0,
+        "band_width_nm": 20.0,
+        "description": "vegetation"
+    },
+    {
+        "long_name": "Band 8",
+        "short_name": "B08",
+        "cell_size_m": 10.0,
+        "central_wavelength_nm": 842.0,
+        "band_width_nm": 115.0,
+        "description": "near-infrared"
+    },
+    {
+        "long_name": "Band 8A",
+        "short_name": "B8A",
+        "cell_size_m": 20.0,
+        "central_wavelength_nm": 865.0,
+        "band_width_nm": 20.0,
+        "description": "vegetation"
+    },
+    {
+        "long_name": "Band 9",
+        "short_name": "B09",
+        "cell_size_m": 60.0,
+        "central_wavelength_nm": 945.0,
+        "band_width_nm": 20.0,
+        "description": "water vapour"
+    },
+    {
+        "long_name": "Band 10",
+        "short_name": "B10",
+        "cell_size_m": 60.0,
+        "central_wavelength_nm": 1375.0,
+        "band_width_nm": 30.0,
+        "description": "cirrus cloud detection"
+    },
+    {
+        "long_name": "Band 11",
+        "short_name": "B11",
+        "cell_size_m": 20.0,
+        "central_wavelength_nm": 1610.0,
+        "band_width_nm": 90.0,
+        "description": "short-wave infrared 1"
+    },
+    {
+        "long_name": "Band 12",
+        "short_name": "B12",
+        "cell_size_m": 20.0,
+        "central_wavelength_nm": 2190.0,
+        "band_width_nm": 180.0,
+        "description": "short-wave infrared 1"
+    }
+]   
