@@ -319,6 +319,12 @@ The main objective of the Sentinel-3 mission is to measure sea surface topograph
 
 ## Altimeters
 
+### Overview
+
+### ICESat-2
+
+### CryoSat-2
+
 ## AI4ICE Dataset
 
 [Data](https://data.dtu.dk/articles/dataset/AI4Arctic_ASIP_Sea_Ice_Dataset_-_version_2/13011134/3)  
