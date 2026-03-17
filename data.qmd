@@ -18,19 +18,56 @@ Sensitivity to snow
 
 ### Sentinel-1
 
-**Band**: C-Band
+#### Overview
 
-**Channels**: 
+Sentinel-1 is a C-Band radar.  The Sentinel-1 mission was planned as a two-satellite constellation, with the two satellites sharing the same orbit plane.  Sentinel-1A was launched on 3 April 2014.  Sentinel-1B was launched 25 April 2016.  Sentinel-1B was retired on 23 December 2021 because of a power supply issue.  Sentinel-1C was launched 5 December 2024 and Sentinel-1D was launched November 2025.
 
-**Products**: Ground Range Detected
+#### Instrument Characteristics
 
-**Swath Width**:
+**Orbit**: Sun synchronous near-polar orbit with a $98.18^\circ$ inclination.
 
-**Resolution**:
+**Altitude**: 693 km
 
-**Revisit**:
+**Revisit Time**: 6 to 12 days depending on regions
 
-**Data Products**
+**Band**: C-Band with central frequency 5.405 GHz
+
+**Channels**: Depends on mode (see @tbl-sentinel1-modes)
+
+| Mode | Spatial Resolution (m) | Swath width (km) | Channels | Coverage | Use |
+|------|------------------------|------------------|----------|----------|-----|
+| Strip Map (SM) | 5 x 5 | 80 | HH, VV, HH+HV, VV+VH | | Emergency management on request |
+| Interferometric Wide Swath (IW) | 5 x 20 | 250 | HH, VV, HH+HV, VV+VH | Land | interferometry |
+| Extra Wide (EW) Swath | 20 x 40 | 400 | HH, VV, HH+HV, VV+VH | Coastal, Ocean | Shipping, oil spill, sea ice |
+| Wave (WV) | 5 x 5 | 20 | HH, VV | Open ocean | wave |
+
+: Sentinel-1 Modes {#tbl-sentinel1-modes}
+
+Extra Wide Swath mode is the primary mode for sea ice monitoring providing data in HH and HV polarizations.  Images are distributed as Ground Range Detected products.  Most sea ice regions only have medium resolution images available.  Images are constructed from three swaths using the Terrain Observation with Progressive Scanning SAR (TOPSAR) imaging method.  
+
+**Products**:
+
+- Level 1 Single Look Complex data: complex images of phase and amplitude
+- Level 1 Ground Range Detected: multi-looked intensity
+- Level 2 Ocean (OCN) data: ocean geophysical parameters
+
+#### File Format
+
+Products are distributed in SAFE format.  Each product ("image") contains a measurement dataset in GeoTIFF.  Calibration and other supporting data are in XML format.
+
+#### Get Data
+
+Data are available from NASA's ASF DAAC or Copernicus Hub.  Sentinel-1 products are also on Google Earth Engine.  _Add links_
+
+#### Reading Files
+
+GDAL has a driver for SAFE formatted files.
+
+`satpy` has a Sentinel-1 reader and tools.
+
+#### Links
+
+[sentinelhub: SAR-Ice, a sea ice RGB composite](https://custom-scripts.sentinel-hub.com/sentinel-1/sar-ice/)
 
 ### Radarsat
 
@@ -65,6 +102,10 @@ Sensitivity to snow
 **Data Products**:
 
 ### NISAR
+
+#### Overview
+
+Only useful for marginal regions of the Arctic because of the obital geometry and sensor viewing angle.  All ocean and sea regions surrounding Antarctica are visible.
 
 **Band**: L-Band and S-Band
 
@@ -296,3 +337,5 @@ The main objective of the Sentinel-3 mission is to measure sea surface topograph
 [OSISAF Sea Ice Products](https://osi-saf.eumetsat.int/products/sea-ice-products)  
 [Quicklook Arctic Weekly EASE-Grid Sea Ice Age, Version 1](https://nsidc.org/data/nsidc-0749/versions/1)  
 [EASE-Grid Sea Ice Age, Version 4](https://nsidc.org/data/nsidc-0611/versions/4)
+
+[NOAA SAR Users Manual, Chapter 3, SAR Measurements on Seaice](https://www.sarusersmanual.com/ManualPDF/NOAASARManual_CH03_pg081_116.pdf)
