@@ -1,6 +1,6 @@
 _book/
 
 /.quarto/
-docs
+docs/
 
 **/*.quarto_ipynb
