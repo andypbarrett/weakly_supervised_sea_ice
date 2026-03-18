@@ -1,0 +1,13 @@
+chart_dir: "C:\\Users\\yoko2261\\OneDrive - UCB-O365\\CAIG\\Ice_chart\\"
+supp_dir: "C:\\Users\\yoko2261\\OneDrive - UCB-O365\\CAIG\\Supplement\\" 
+chart_date0: "20150101"
+times_dir: "C:\\Users\\yoko2261\\OneDrive - UCB-O365\\CAIG\\TS\\" 
+times_date0: "2025-01-01"
+times_date1: "2026-01-01"
+crs: 'EPSG:3413'
+pixel_size: 160
+radius_pixel: 768
+overwrite: False
+POLARIZATION: 'HH'
+INSTRUMENT_MODE: 'EW'
+PLATFORM: 'A'
