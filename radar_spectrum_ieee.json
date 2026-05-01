@@ -1,0 +1,80 @@
+[
+    {
+        "band": "HF",
+        "frequency_lower_ghz": 0.003,
+        "frequency_upper_ghz": 0.03,
+        "name": "high frequency"
+    },
+    {
+        "band": "VHF",
+        "frequency_lower_ghz": 0.03,
+        "frequency_upper_ghz": 0.3 GHz,
+        "name": "very high frequency"
+    }
+    {
+        "band": "UHF",
+        "frequency_lower_ghz": 0.3,
+        "frequency_upper_ghz": 1,
+        "name": "ultra-high frequency"
+    }
+    {
+        "band": "L",
+        "frequency_lower_ghz": 1,
+        "frequency_upper_ghz": 2,
+        "name": "long wave"
+    }
+    {
+        "band": "S",
+        "frequency_lower_ghz": 2,
+        "frequency_upper_ghz": 4,
+        "name": "short wave",
+    }
+    {
+        "band": "C",
+        "frequency_lower_ghz": 4,
+        "frequency_upper_ghz": 8,
+        "name": "compromise between S and X"
+    }
+    {
+        "band": "X",
+        "frequency_lower_ghz": 8,
+        "frequency_upper_ghz": 12,
+        "name": "Used in World War II for fire control, X for cross (as in crosshair). Exotic"
+    }
+    {
+        "band": "Ku",
+        "frequency_lower_ghz": "12",
+        "frequency_upper_ghz": "18",
+        "name": "Kurz-under"
+    }
+    {
+        "band": "K",
+        "frequency_lower_ghz": 18,
+        "frequency_upper_ghz": 27,
+        "name": "German: Kurz (short)"
+    }
+    {
+        "band": "Ka",
+        "frequency_lower_ghz": 27,
+        "frequency_upper_ghz": 40,
+        "name": "Kurz-above"
+    }
+    {
+        "band": "V",
+        "frequency_lower_ghz": 40,
+        "frequency_upper_ghz": 75,
+        "name": ""
+    }
+    {
+        "band": "W",
+        "frequency_lower_ghz": 75,
+        "frequency_upper_ghz": 110,
+        "name": "W follows V in the alphabet"
+    }
+    {
+        "band": "mm",
+        "frequency_lower_ghz": 110,
+        "frequency_upper_ghz": 300,
+        "name": "Millimeter, also G"
+    }
+]
