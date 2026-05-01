@@ -1,7 +1,7 @@
 _book/
 
 /.quarto/
-docs/
-_freeze/
+#docs/
+#_freeze/
 
 **/*.quarto_ipynb
