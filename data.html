@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>4&nbsp; Data – Sea Ice Classification with Weakly Supervised Learning</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -20,7 +23,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -34,15 +91,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="./background.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0dd2bd5de344125cf763a379ddc3eb04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-36bf55b16c7cb4b1420f41495cb5446a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -71,6 +127,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -167,10 +252,38 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">4.1</span> Overview</a></li>
-  <li><a href="#sentinel-1-sar" id="toc-sentinel-1-sar" class="nav-link" data-scroll-target="#sentinel-1-sar"><span class="header-section-number">4.2</span> Sentinel-1 SAR</a></li>
-  <li><a href="#sea-ice-charts" id="toc-sea-ice-charts" class="nav-link" data-scroll-target="#sea-ice-charts"><span class="header-section-number">4.3</span> Sea Ice Charts</a></li>
-  <li><a href="#ai4ice-dataset" id="toc-ai4ice-dataset" class="nav-link" data-scroll-target="#ai4ice-dataset"><span class="header-section-number">4.4</span> AI4ICE Dataset</a></li>
-  <li><a href="#other-resources" id="toc-other-resources" class="nav-link" data-scroll-target="#other-resources"><span class="header-section-number">4.5</span> Other Resources</a></li>
+  <li><a href="#synthetic-aperture-radar" id="toc-synthetic-aperture-radar" class="nav-link" data-scroll-target="#synthetic-aperture-radar"><span class="header-section-number">4.2</span> Synthetic Aperture Radar</a>
+  <ul class="collapse">
+  <li><a href="#overview-1" id="toc-overview-1" class="nav-link" data-scroll-target="#overview-1"><span class="header-section-number">4.2.1</span> Overview</a></li>
+  <li><a href="#sentinel-1" id="toc-sentinel-1" class="nav-link" data-scroll-target="#sentinel-1"><span class="header-section-number">4.2.2</span> Sentinel-1</a></li>
+  <li><a href="#radarsat" id="toc-radarsat" class="nav-link" data-scroll-target="#radarsat"><span class="header-section-number">4.2.3</span> Radarsat</a></li>
+  <li><a href="#radarsat-constellation" id="toc-radarsat-constellation" class="nav-link" data-scroll-target="#radarsat-constellation"><span class="header-section-number">4.2.4</span> Radarsat Constellation</a></li>
+  <li><a href="#nisar" id="toc-nisar" class="nav-link" data-scroll-target="#nisar"><span class="header-section-number">4.2.5</span> NISAR</a></li>
+  </ul></li>
+  <li><a href="#passive-microwave" id="toc-passive-microwave" class="nav-link" data-scroll-target="#passive-microwave"><span class="header-section-number">4.3</span> Passive Microwave</a>
+  <ul class="collapse">
+  <li><a href="#overview-4" id="toc-overview-4" class="nav-link" data-scroll-target="#overview-4"><span class="header-section-number">4.3.1</span> Overview</a></li>
+  <li><a href="#amsr2-daily-polar-gridded-brightness-temperatures" id="toc-amsr2-daily-polar-gridded-brightness-temperatures" class="nav-link" data-scroll-target="#amsr2-daily-polar-gridded-brightness-temperatures"><span class="header-section-number">4.3.2</span> AMSR2 Daily Polar Gridded Brightness Temperatures</a></li>
+  <li><a href="#dmsp-ssmi-and-ssmis-daily-polar-gridded-brightness-temperatures" id="toc-dmsp-ssmi-and-ssmis-daily-polar-gridded-brightness-temperatures" class="nav-link" data-scroll-target="#dmsp-ssmi-and-ssmis-daily-polar-gridded-brightness-temperatures"><span class="header-section-number">4.3.3</span> DMSP SSM/I and SSMIS Daily Polar Gridded Brightness Temperatures</a></li>
+  <li><a href="#calibrated-enhanced-resolution-passive-microwave-daily-ease-grid-2.0-brightness-temperature-esdr" id="toc-calibrated-enhanced-resolution-passive-microwave-daily-ease-grid-2.0-brightness-temperature-esdr" class="nav-link" data-scroll-target="#calibrated-enhanced-resolution-passive-microwave-daily-ease-grid-2.0-brightness-temperature-esdr"><span class="header-section-number">4.3.4</span> Calibrated Enhanced-Resolution Passive Microwave Daily EASE-Grid 2.0 Brightness Temperature ESDR</a></li>
+  </ul></li>
+  <li><a href="#visible-imagery" id="toc-visible-imagery" class="nav-link" data-scroll-target="#visible-imagery"><span class="header-section-number">4.4</span> Visible Imagery</a>
+  <ul class="collapse">
+  <li><a href="#modis" id="toc-modis" class="nav-link" data-scroll-target="#modis"><span class="header-section-number">4.4.1</span> MODIS</a></li>
+  <li><a href="#viirs" id="toc-viirs" class="nav-link" data-scroll-target="#viirs"><span class="header-section-number">4.4.2</span> VIIRS</a></li>
+  <li><a href="#sentinel-2" id="toc-sentinel-2" class="nav-link" data-scroll-target="#sentinel-2"><span class="header-section-number">4.4.3</span> Sentinel-2</a></li>
+  <li><a href="#sentinel-3" id="toc-sentinel-3" class="nav-link" data-scroll-target="#sentinel-3"><span class="header-section-number">4.4.4</span> Sentinel-3</a></li>
+  </ul></li>
+  <li><a href="#sea-ice-charts" id="toc-sea-ice-charts" class="nav-link" data-scroll-target="#sea-ice-charts"><span class="header-section-number">4.5</span> Sea Ice Charts</a></li>
+  <li><a href="#altimeters" id="toc-altimeters" class="nav-link" data-scroll-target="#altimeters"><span class="header-section-number">4.6</span> Altimeters</a>
+  <ul class="collapse">
+  <li><a href="#overview-5" id="toc-overview-5" class="nav-link" data-scroll-target="#overview-5"><span class="header-section-number">4.6.1</span> Overview</a></li>
+  <li><a href="#icesat-2" id="toc-icesat-2" class="nav-link" data-scroll-target="#icesat-2"><span class="header-section-number">4.6.2</span> ICESat-2</a></li>
+  <li><a href="#cryosat-2" id="toc-cryosat-2" class="nav-link" data-scroll-target="#cryosat-2"><span class="header-section-number">4.6.3</span> CryoSat-2</a></li>
+  </ul></li>
+  <li><a href="#ai4ice-dataset" id="toc-ai4ice-dataset" class="nav-link" data-scroll-target="#ai4ice-dataset"><span class="header-section-number">4.7</span> AI4ICE Dataset</a></li>
+  <li><a href="#summary-table-of-instruments-temporal-frequency-extent-and-spatial-resolution" id="toc-summary-table-of-instruments-temporal-frequency-extent-and-spatial-resolution" class="nav-link" data-scroll-target="#summary-table-of-instruments-temporal-frequency-extent-and-spatial-resolution"><span class="header-section-number">4.8</span> Summary Table of Instruments, Temporal Frequency, Extent and Spatial Resolution</a></li>
+  <li><a href="#other-resources" id="toc-other-resources" class="nav-link" data-scroll-target="#other-resources"><span class="header-section-number">4.9</span> Other Resources</a></li>
   </ul>
 </nav>
     </div>
@@ -198,20 +311,686 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="overview" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="overview"><span class="header-section-number">4.1</span> Overview</h2>
-<p>A description of the data we are using</p>
+<p>This section provides an overview of satellite instruments and data commonly used to estimate sea ice variables. Visible, near-infrared, and microwave sensors are used. Table <a href="#tbl-electromagnetic-spectrum" class="quarto-xref">Table&nbsp;<span>4.1</span></a> shows the wavebands for these sensors. However, because the polar regions are dark for part of the year and also the polar regions tend to be cloudy, microwave wavelengths are often preferred because they can operate during polar night and the atmosphere is largely transparent at these wavelengths (<a href="#fig-atmospheric-opacity" class="quarto-xref">Figure&nbsp;<span>4.1</span></a>).</p>
+<div id="tbl-electromagnetic-spectrum" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-electromagnetic-spectrum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.1: Classification of the electromagnetic spectrum by frequency and wavelength
+</figcaption>
+<div aria-describedby="tbl-electromagnetic-spectrum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 29%">
+<col style="width: 33%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Waveband</th>
+<th style="text-align: left;">Frequency</th>
+<th style="text-align: left;">Wavelength</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Microwave</td>
+<td style="text-align: left;">0.3 GHz to 300 GHz</td>
+<td style="text-align: left;">1 m to 1 mm</td>
+</tr>
+<tr class="even">
+<td>Thermal Infrared</td>
+<td style="text-align: left;">25 THz to 30 THz</td>
+<td style="text-align: left;">10 <span class="math inline">\(\mathrm{\mu m}\)</span> to 12 <span class="math inline">\(\mathrm{\mu m}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Near-Infrared</td>
+<td style="text-align: left;">200 THz to 430 THz</td>
+<td style="text-align: left;">0.7 <span class="math inline">\(\mathrm{\mu m}\)</span> to 1.5 <span class="math inline">\(\mathrm{\mu m}\)</span></td>
+</tr>
+<tr class="even">
+<td>Visible</td>
+<td style="text-align: left;">430 THz to 1000 THz</td>
+<td style="text-align: left;">300 <span class="math inline">\(\mathrm{nm}\)</span> to 700 <span class="math inline">\(\mathrm{nm}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div id="fig-atmospheric-opacity" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-atmospheric-opacity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://earthguide.ucsd.edu/eoc/special_topics/teach/sp_climate_change/images/atmo_transmittance_med.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-atmospheric-opacity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: The Opacity of Earth’s Atmosphere
+</figcaption>
+</figure>
+</div>
+<p>Remote sensing instruments are either passive or active sensors. Passive sensors measure radiation from an external light source (e.g.&nbsp;the Sun or Earth) either reflected, scattered or emitted from a surface. Active sensors provide their own source of radiation and measure the reflected or backscattered signal.</p>
+<p>Here we use focus on active sensors first, in particular Synthetic Aperture Radar.</p>
 </section>
-<section id="sentinel-1-sar" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="sentinel-1-sar"><span class="header-section-number">4.2</span> Sentinel-1 SAR</h2>
+<section id="synthetic-aperture-radar" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="synthetic-aperture-radar"><span class="header-section-number">4.2</span> Synthetic Aperture Radar</h2>
+<section id="overview-1" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="overview-1"><span class="header-section-number">4.2.1</span> Overview</h3>
+<p>Sensors used for sea ice monitoring</p>
+<p>Penetration depth</p>
+<p>Sensitivity to sea ice types</p>
+<p>Sensitivity to snow</p>
 </section>
-<section id="sea-ice-charts" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="sea-ice-charts"><span class="header-section-number">4.3</span> Sea Ice Charts</h2>
+<section id="sentinel-1" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="sentinel-1"><span class="header-section-number">4.2.2</span> Sentinel-1</h3>
+<section id="overview-2" class="level4" data-number="4.2.2.1">
+<h4 data-number="4.2.2.1" class="anchored" data-anchor-id="overview-2"><span class="header-section-number">4.2.2.1</span> Overview</h4>
+<p>Sentinel-1 is a C-Band radar. The Sentinel-1 mission was planned as a two-satellite constellation, with the two satellites sharing the same orbit plane. Sentinel-1A was launched on 3 April 2014. Sentinel-1B was launched 25 April 2016. Sentinel-1B was retired on 23 December 2021 because of a power supply issue. Sentinel-1C was launched 5 December 2024 and Sentinel-1D was launched November 2025.</p>
 </section>
-<section id="ai4ice-dataset" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="ai4ice-dataset"><span class="header-section-number">4.4</span> AI4ICE Dataset</h2>
+<section id="instrument-characteristics" class="level4" data-number="4.2.2.2">
+<h4 data-number="4.2.2.2" class="anchored" data-anchor-id="instrument-characteristics"><span class="header-section-number">4.2.2.2</span> Instrument Characteristics</h4>
+<p><strong>Orbit</strong>: Sun synchronous near-polar orbit with a <span class="math inline">\(98.18^\circ\)</span> inclination.</p>
+<p><strong>Altitude</strong>: 693 km</p>
+<p><strong>Revisit Time</strong>: 6 to 12 days depending on regions</p>
+<p><strong>Band</strong>: C-Band with central frequency 5.405 GHz</p>
+<p><strong>Channels</strong>: Depends on mode (see <a href="#tbl-sentinel1-modes" class="quarto-xref">Table&nbsp;<span>4.2</span></a>)</p>
+<div id="tbl-sentinel1-modes" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sentinel1-modes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.2: Sentinel-1 Modes
+</figcaption>
+<div aria-describedby="tbl-sentinel1-modes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 32%">
+<col style="width: 24%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mode</th>
+<th>Spatial Resolution (m)</th>
+<th>Swath width (km)</th>
+<th>Channels</th>
+<th>Coverage</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Strip Map (SM)</td>
+<td>5 x 5</td>
+<td>80</td>
+<td>HH, VV, HH+HV, VV+VH</td>
+<td></td>
+<td>Emergency management on request</td>
+</tr>
+<tr class="even">
+<td>Interferometric Wide Swath (IW)</td>
+<td>5 x 20</td>
+<td>250</td>
+<td>HH, VV, HH+HV, VV+VH</td>
+<td>Land</td>
+<td>interferometry</td>
+</tr>
+<tr class="odd">
+<td>Extra Wide (EW) Swath</td>
+<td>20 x 40</td>
+<td>400</td>
+<td>HH, VV, HH+HV, VV+VH</td>
+<td>Coastal, Ocean</td>
+<td>Shipping, oil spill, sea ice</td>
+</tr>
+<tr class="even">
+<td>Wave (WV)</td>
+<td>5 x 5</td>
+<td>20</td>
+<td>HH, VV</td>
+<td>Open ocean</td>
+<td>wave</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Extra Wide Swath mode is the primary mode for sea ice monitoring providing data in HH and HV polarizations. Images are distributed as Ground Range Detected products. Most sea ice regions only have medium resolution images available. Images are constructed from three swaths using the Terrain Observation with Progressive Scanning SAR (TOPSAR) imaging method.</p>
+<p><strong>Products</strong>:</p>
+<ul>
+<li>Level 1 Single Look Complex data: complex images of phase and amplitude</li>
+<li>Level 1 Ground Range Detected: multi-looked intensity</li>
+<li>Level 2 Ocean (OCN) data: ocean geophysical parameters</li>
+</ul>
+</section>
+<section id="file-format" class="level4" data-number="4.2.2.3">
+<h4 data-number="4.2.2.3" class="anchored" data-anchor-id="file-format"><span class="header-section-number">4.2.2.3</span> File Format</h4>
+<p>Products are distributed in SAFE format. Each product (“image”) contains a measurement dataset in GeoTIFF. Calibration and other supporting data are in XML format.</p>
+</section>
+<section id="get-data" class="level4" data-number="4.2.2.4">
+<h4 data-number="4.2.2.4" class="anchored" data-anchor-id="get-data"><span class="header-section-number">4.2.2.4</span> Get Data</h4>
+<p>Data are available from NASA’s ASF DAAC or Copernicus Hub. Sentinel-1 products are also on Google Earth Engine but processing steps are unclear. <em>Add links</em></p>
+</section>
+<section id="reading-files" class="level4" data-number="4.2.2.5">
+<h4 data-number="4.2.2.5" class="anchored" data-anchor-id="reading-files"><span class="header-section-number">4.2.2.5</span> Reading Files</h4>
+<p>GDAL has a driver for SAFE formatted files.</p>
+<p><code>satpy</code> has a Sentinel-1 reader and tools.</p>
+</section>
+<section id="links" class="level4" data-number="4.2.2.6">
+<h4 data-number="4.2.2.6" class="anchored" data-anchor-id="links"><span class="header-section-number">4.2.2.6</span> Links</h4>
+<p><a href="https://custom-scripts.sentinel-hub.com/sentinel-1/sar-ice/">sentinelhub: SAR-Ice, a sea ice RGB composite</a></p>
+</section>
+</section>
+<section id="radarsat" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="radarsat"><span class="header-section-number">4.2.3</span> Radarsat</h3>
+<p><strong>Band</strong>: C-Band</p>
+<p><strong>Channels</strong>:</p>
+<p><strong>Products</strong>: Ground Range Detected</p>
+<p><strong>Swath Width</strong>:</p>
+<p><strong>Resolution</strong>:</p>
+<p><strong>Revisit</strong>:</p>
+<p><strong>Data Products</strong>:</p>
+</section>
+<section id="radarsat-constellation" class="level3" data-number="4.2.4">
+<h3 data-number="4.2.4" class="anchored" data-anchor-id="radarsat-constellation"><span class="header-section-number">4.2.4</span> Radarsat Constellation</h3>
+<p><strong>Band</strong>: C-Band</p>
+<p><strong>Channels</strong>:</p>
+<p><strong>Products</strong>:</p>
+<p><strong>Swath Width</strong>:</p>
+<p><strong>Resolution</strong>:</p>
+<p><strong>Revisit</strong>:</p>
+<p><strong>Data Products</strong>:</p>
+</section>
+<section id="nisar" class="level3" data-number="4.2.5">
+<h3 data-number="4.2.5" class="anchored" data-anchor-id="nisar"><span class="header-section-number">4.2.5</span> NISAR</h3>
+<section id="overview-3" class="level4" data-number="4.2.5.1">
+<h4 data-number="4.2.5.1" class="anchored" data-anchor-id="overview-3"><span class="header-section-number">4.2.5.1</span> Overview</h4>
+<p>Only useful for marginal regions of the Arctic because of the obital geometry and sensor viewing angle. All ocean and sea regions surrounding Antarctica are visible.</p>
+<p><strong>Band</strong>: L-Band and S-Band</p>
+<p><strong>Channels</strong>:</p>
+<p><strong>Products</strong>: Ground Range Detected</p>
+<p><strong>Swath Width</strong>:</p>
+<p><strong>Resolution</strong>:</p>
+<p><strong>Revisit time</strong>:</p>
+<p><strong>Data Products</strong>:</p>
+</section>
+</section>
+</section>
+<section id="passive-microwave" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="passive-microwave"><span class="header-section-number">4.3</span> Passive Microwave</h2>
+<section id="overview-4" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="overview-4"><span class="header-section-number">4.3.1</span> Overview</h3>
+<p>Passive microwave sensors measure electromagnetic radiation in the microwave region that is emitted by the Earth.</p>
+</section>
+<section id="amsr2-daily-polar-gridded-brightness-temperatures" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="amsr2-daily-polar-gridded-brightness-temperatures"><span class="header-section-number">4.3.2</span> AMSR2 Daily Polar Gridded Brightness Temperatures</h3>
+<p>Daily brightness temperature product produced from the Japanses Aerospace Exploration Agency (JAXA) Advanced Microwave Scanning Radiometer 2 (AMSR2) instrument.</p>
+<p><strong>Channels:</strong> 18.7 GHz vertical (v) and horizontal (h), 23.8 GHz (v), and 36.5 GHz (v &amp; h).</p>
+<p><strong>Grid Cell Size:</strong> nominally 25 km</p>
+<p><em>Actual Resolution is dependent on frequency</em></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Frequency (GHz)</th>
+<th>Resolution (km)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>18.7</td>
+<td>14 x 22</td>
+</tr>
+<tr class="even">
+<td>36.5</td>
+<td>7 x 12</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Coverage:</strong> Northern and Southern Hemispheres</p>
+<p><strong>Grid:</strong> NSIDC Polar Stereographic North and South (<code>EPSG:3411</code>, <code>EPSG:3412</code>)</p>
+<p><strong>Time Period:</strong> 1 January 2023 to present</p>
+<p><strong>Temporal Frequency:</strong> Daily</p>
+<p><a href="https://nsidc.org/data/nsidc-0802"><strong>NSIDC Dataset Landing Page</strong></a></p>
+<p><strong>Programmatic Download:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>auth <span class="op">=</span> earthaccess.login()</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Add wildcard search for sensor</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> earthaccess.search_data(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    short_name<span class="op">=</span><span class="st">"NSIDC-0802"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    spatial<span class="op">=</span>(lonmin, lonmax, latmin, latmax),</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    temporal<span class="op">=</span>(date_begin, date_end),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> earthaccess.download(results, local_path<span class="op">=</span><span class="st">"./"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="dmsp-ssmi-and-ssmis-daily-polar-gridded-brightness-temperatures" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="dmsp-ssmi-and-ssmis-daily-polar-gridded-brightness-temperatures"><span class="header-section-number">4.3.3</span> DMSP SSM/I and SSMIS Daily Polar Gridded Brightness Temperatures</h3>
+<p>Daily brightness temperature product produced from orbital swath data from the Special Sensor Microwave/Imager (SSM/I) aboard the Defense Meteorological Program (DMSP) F8, F11 and F13 platforms, and the Special Sensor Microwave Imager/Sounder (SSMIS) aboard DMSP F17 and F18.</p>
+<p><strong>Channels:</strong> 19.3 GHz vertical (v) and horizontal (h), 22.2 GHZ (v), 37.0 GHz (v &amp; h), 85.5 GHz (v &amp; h) on SSM/I, and 91.7 GHz (v &amp; h) on SSMIS.</p>
+<p><strong>Grid Cell Size:</strong> 85.5 GHz and 91.7 GHz channel data are gridded to 12.5 km cells, all other channels are gridded to 25 km.</p>
+<p><em>Actual resolutions depend of frequency. Footprint are elliptical.</em></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Frequency (GHz)</th>
+<th>Resolution (km)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>19.3</td>
+<td>45 x 70</td>
+</tr>
+<tr class="even">
+<td>37.0</td>
+<td>30 x 38</td>
+</tr>
+<tr class="odd">
+<td>85.0</td>
+<td>14 x 16</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Coverage:</strong> North and South Hemisphere</p>
+<p><strong>Grid CRS:</strong> NSIDC Polar Stereographic North and South (<code>EPSG:3411</code>, <code>EPSG:3412</code>)</p>
+<p><strong>Resampling method:</strong> A simple drop-in-the-bucket averaging.</p>
+<p><strong>Time Period:</strong> 1978 to present</p>
+<p><a href="https://nsidc.org/data/nsidc-0001"><strong>NSIDC Dataset Landing Page</strong></a></p>
+<p><strong>Programmatic Download:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>auth <span class="op">=</span> earthaccess.login()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Add wildcard search for sensor</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> earthaccess.search_data(</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    short_name<span class="op">=</span><span class="st">"NSIDC-0001"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    spatial<span class="op">=</span>(lonmin, lonmax, latmin, latmax),</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    temporal<span class="op">=</span>(date_begin, date_end),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> earthaccess.download(results, local_path<span class="op">=</span><span class="st">"./"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="calibrated-enhanced-resolution-passive-microwave-daily-ease-grid-2.0-brightness-temperature-esdr" class="level3" data-number="4.3.4">
+<h3 data-number="4.3.4" class="anchored" data-anchor-id="calibrated-enhanced-resolution-passive-microwave-daily-ease-grid-2.0-brightness-temperature-esdr"><span class="header-section-number">4.3.4</span> Calibrated Enhanced-Resolution Passive Microwave Daily EASE-Grid 2.0 Brightness Temperature ESDR</h3>
+<p>An enhanced-resolution, multi-sensor brightness temperature product from passive microwave sensors. Sensors are:</p>
+<ul>
+<li>Scanning Multichannel Microwave Radiometer (SMMR) on NIMBUS-7</li>
+<li>Special Sensor Microwave/Imager (SSM/I) on DMSP 5D-2/F8, F10, F11, F13, F14, DMSP 5D-3/F15</li>
+<li>Special Sensor Microwave Imager/Sounder (SSMIS) on DMSP 5D-3/F16, F17, F18, F19</li>
+<li>Advanced Microwave Scanning Radiometer - Earth Observing System (AMSR-E) on AQUA</li>
+<li>Advanced Microwave Scanning Radiometer 2 (AMSR2) on GCOM-W1</li>
+</ul>
+<p><strong>Channels:</strong> multiple, sensor dependent but between 6.6 and 92 GHz</p>
+<p><strong>Grid Cell Size:</strong> 25 km (All), 3.125 km (&gt; 30 GHz), 6.25 km (12 GHz to 30 GHz), 12.5 km (&lt; 12 GHz)</p>
+<p><strong>Resampling Method:</strong> 25 km uses <em>drop-in-the-bucket</em> average, enhanced resultions use Radiometer Version Scatterometer Image Reconstruction (rSIR)</p>
+<p><strong>Time Period:</strong> 1987 to Present depending on sensor (AMSR2 and SSMIS F16, F17, F18 all operational)</p>
+<p><strong>Temporal Frequency:</strong> Twice Daily</p>
+<p><strong>Programmatic Download:</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> earthaccess</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>auth <span class="op">=</span> earthaccess.login()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Add wildcard search for sensor</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> earthaccess.search_data(</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    short_name<span class="op">=</span><span class="st">"NSIDC-0630"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    spatial<span class="op">=</span>(lonmin, lonmax, latmin, latmax),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    temporal<span class="op">=</span>(date_begin, date_end),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>files <span class="op">=</span> earthaccess.download(results, local_path<span class="op">=</span><span class="st">"./"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+</section>
+<section id="visible-imagery" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="visible-imagery"><span class="header-section-number">4.4</span> Visible Imagery</h2>
+<section id="modis" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="modis"><span class="header-section-number">4.4.1</span> MODIS</h3>
+<p>The MODIS instrument on-board Terra and Aqua Satellites has MODIS Level 1B Calibrated Radiances for the 36 MODIS bands and reflectances for solar refelectance bands 1 through 19 and 26.</p>
+<p>The MODIS sea ice algorithm uses the following bands from MOD02 MODIS Level 1B Calibrated and Geolocated Radiances. The sea ice algorithm uses the MODIS Land/Water mask, Solar zenith angle, geolocation, and Geoid height from MOD03, and the Unobstructed field of view and day/night glags from MOD35_L2 products.</p>
+<p>There are three MOD02 products, each product containing bands for one of the three spatial resolutions.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>MOD02 Product</th>
+<th>Resolution (m)</th>
+<th>Bands</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>MOD02QKM</td>
+<td>250</td>
+<td>1, 2</td>
+</tr>
+<tr class="even">
+<td>MOD02HKM</td>
+<td>500</td>
+<td>3-7</td>
+</tr>
+<tr class="odd">
+<td>MOD021KM</td>
+<td>1000</td>
+<td>8-36</td>
+</tr>
+</tbody>
+</table>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 26%">
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 11%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Band</th>
+<th style="text-align: right;">Central <span class="math inline">\(\lambda\)</span> (<span class="math inline">\(\mu m\)</span>)</th>
+<th style="text-align: right;">Lower <span class="math inline">\(\lambda\)</span> (<span class="math inline">\(\mu m\)</span>)</th>
+<th style="text-align: right;">Upper <span class="math inline">\(\lambda\)</span> (<span class="math inline">\(\mu m\)</span>)</th>
+<th style="text-align: right;">Resolution (m)</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td style="text-align: right;">0.645</td>
+<td style="text-align: right;">0.620</td>
+<td style="text-align: right;">0.670</td>
+<td style="text-align: right;">250</td>
+<td>Threshold</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td style="text-align: right;">0.865</td>
+<td style="text-align: right;">0.841</td>
+<td style="text-align: right;">0.876</td>
+<td style="text-align: right;">250</td>
+<td>Threshold</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td style="text-align: right;">0.555</td>
+<td style="text-align: right;">0.545</td>
+<td style="text-align: right;">0.565</td>
+<td style="text-align: right;">500</td>
+<td>NDSI</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td style="text-align: right;">1.640</td>
+<td style="text-align: right;">1.628</td>
+<td style="text-align: right;">1.652</td>
+<td style="text-align: right;">500</td>
+<td>NDSI</td>
+</tr>
+<tr class="odd">
+<td>31</td>
+<td style="text-align: right;">11.03</td>
+<td style="text-align: right;">10.780</td>
+<td style="text-align: right;">11.280</td>
+<td style="text-align: right;">1000</td>
+<td>IST</td>
+</tr>
+<tr class="even">
+<td>32</td>
+<td style="text-align: right;">12.02</td>
+<td style="text-align: right;">11.770</td>
+<td style="text-align: right;">12.270</td>
+<td style="text-align: right;">1000</td>
+<td>IST</td>
+</tr>
+</tbody>
+</table>
+<p>Sea ice is assumed to be snow covered and is mapped based on a normalized difference of surface reflectances between bands 4 and 6, the Normalized Difference Snow Index.</p>
+<p><span class="math display">\[
+NDSI = \frac{band4 - band6}{band4 + band6}
+\]</span></p>
+<p>Pixels are identified as sea ice if the following criteria pass.</p>
+<ul>
+<li><span class="math inline">\(NDSI &gt; 4\)</span></li>
+<li><span class="math inline">\(band2 &gt; 0.11\)</span></li>
+<li><span class="math inline">\(band1 &gt; 0.10\)</span></li>
+</ul>
+<p>An Ice Surface Temperature (IST) product is also calculated. Surface radiances from bands 31 and 32 are first converted to brightness temperatures using a version of the Planck function.</p>
+<p><span class="math display">\[
+T_{\lambda} = \frac{c_2 \nu}{ln\left(1 + \left(\frac{e c_2 \nu^3}{E}\right)\right)}
+\]</span></p>
+<p>where <span class="math inline">\(T_{\lambda}\)</span> is brightness temperature in <span class="math inline">\(\mathrm{K}\)</span>, <span class="math inline">\(\nu\)</span> is central wavelength in <span class="math inline">\(\mathrm{cm^{-1}}\)</span>, E is radiance from the sensor in <span class="math inline">\(\mathrm{m\,W m^{-2}\,sr\,cm^{-4}}\)</span>, <span class="math inline">\(e\)</span> is emmissivity, <span class="math inline">\(c_1\)</span> is <span class="math inline">\(1.910659 \times 10^5\: \mathrm{m\, W m^{-2}\, sr\, cm^{-4}}\)</span>, and <span class="math inline">\(c_2\)</span> is <span class="math inline">\(1.438833\: \mathrm{cm\, K}\)</span>.</p>
+<p>IST</p>
+</section>
+<section id="viirs" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="viirs"><span class="header-section-number">4.4.2</span> VIIRS</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis posuere ligula sit amet lacinia. Duis dignissim pellentesque magna, rhoncus congue sapien finibus mollis. Ut eu sem laoreet, vehicula ipsum in, convallis erat. Vestibulum magna sem, blandit pulvinar augue sit amet, auctor malesuada sapien. Nullam faucibus leo eget eros hendrerit, non laoreet ipsum lacinia. Curabitur cursus diam elit, non tempus ante volutpat a. Quisque hendrerit blandit purus non fringilla. Integer sit amet elit viverra ante dapibus semper. Vestibulum viverra rutrum enim, at luctus enim posuere eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+</section>
+<section id="sentinel-2" class="level3" data-number="4.4.3">
+<h3 data-number="4.4.3" class="anchored" data-anchor-id="sentinel-2"><span class="header-section-number">4.4.3</span> Sentinel-2</h3>
+<p>Sentinel-2 is a multi-spectral imager.</p>
+<p>Level 1C and Level 2A granules are 110 km by 110 km geometrically corrected ortho-images projected onto a Universal Transverse Mercator (UTM) CRS. Geometric corrections remove distortions from surface topography and imaging systems. Granules are designed to overlap.</p>
+<p>Level 1C data are top-of-atmosphere reflectances. These data are based on Level 1B products that have been radiometrically corrected. Level 1C products include cloud masks and other QA grids.</p>
+<p>Level 2A products are atmospherically corrected surface reflectance products derived from Level 1C products. In addition to surface reflectance, level 2A products include a Aerosol Optical Thickness (AOT) map, a Water Vapour (WV) map and a Scene Classification (SCL) map.</p>
+<div class="cell" data-execution_count="1">
+<div id="tbl-sentinel2-bands" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="1">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sentinel2-bands-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.3: Characteristics of Sentinel-2 Bands
+</figcaption>
+<div aria-describedby="tbl-sentinel2-bands-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Band</th>
+<th style="text-align: right;">Grid Size (m)</th>
+<th style="text-align: right;">Central Wavelength (nm)</th>
+<th style="text-align: right;">Bandwidth (nm)</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">B01</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">443</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">coastal and aerosol detection</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B02</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">490</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: left;">blue</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">B03</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">560</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: left;">green</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B04</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">665</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: left;">red</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">B05</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">705</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: left;">red edge</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B06</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">740</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: left;">vegetation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">B07</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">783</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">vegetation</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B08</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">842</td>
+<td style="text-align: right;">115</td>
+<td style="text-align: left;">near-infrared</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">B8A</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">865</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">vegetation</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B09</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">945</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: left;">water vapour</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">B10</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">1375</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: left;">cirrus cloud detection</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B11</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">1610</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: left;">short-wave infrared 1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">B12</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">2190</td>
+<td style="text-align: right;">180</td>
+<td style="text-align: left;">short-wave infrared 1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p><strong>Grid size</strong>: 10 m, 20 m or 60 m depending on spectral band.</p>
+<p><strong>Documentation</strong>: <a href="https://sentiwiki.copernicus.eu/web/s2-products#S2Products-Level-1AProductsS2-Products-L1Atrue">Sentinel-2 Products</a></p>
+</section>
+<section id="sentinel-3" class="level3" data-number="4.4.4">
+<h3 data-number="4.4.4" class="anchored" data-anchor-id="sentinel-3"><span class="header-section-number">4.4.4</span> Sentinel-3</h3>
+<p>The main objective of the Sentinel-3 mission is to measure sea surface topography with the <strong>Altimetry Surface Topography Mission (STM)</strong>, sea and land surface temperature with the <strong>Sea and Land Surface Temperature Radiometer (SLSTR)</strong>, and ocean and land surface color with the <strong>Ocean and Land Colour Instrument (OLCI)</strong>..</p>
+<p><span class="citation" data-cites="istomina_updated_2025">Istomina et al. (<a href="references.html#ref-istomina_updated_2025" role="doc-biblioref">2025</a>)</span> used OLCI and SLSTR channels to map melt ponds.</p>
+<section id="slstr" class="level4" data-number="4.4.4.1">
+<h4 data-number="4.4.4.1" class="anchored" data-anchor-id="slstr"><span class="header-section-number">4.4.4.1</span> SLSTR</h4>
+<p><strong>Channels</strong>: 2 channels in the visible (555 nm, 660 nm), a near-infrared channel (870 nm) and six thermal infrared channels (1370 to 12000 nm).</p>
+<p><strong>Swath width</strong>: 1470 km for nadir swath scanner and 740 km for oblique swath scanner.</p>
+<p><strong>Grid Size and Resolution</strong>: Nominal resolution of 500 m.</p>
+<p><strong>Temporal frequency</strong>: mean global revisit time is 1.9 days. For 3A and 3B the revisit time is 0.9 days at the equator.</p>
+</section>
+<section id="olci" class="level4" data-number="4.4.4.2">
+<h4 data-number="4.4.4.2" class="anchored" data-anchor-id="olci"><span class="header-section-number">4.4.4.2</span> OLCI</h4>
+<p><strong>Channels</strong>: 12 channels in the visible wavelengths spanning 400 nm to 753.75 nm, and 9 channels in the near infrared spanning 761.25 nm to 1020 nm.</p>
+<p><strong>Swath Width</strong>: 1270 km</p>
+<p><strong>Grid Size and Resolution</strong>: the OLCI instrument has a 68.5<span class="math inline">\(^\circ\)</span> field of view. The nominal spatial resolution is 300m</p>
+<p><strong>Temporal frequency</strong>: Orbital cycle is 27 days. Revisit time is 2-3 days.</p>
+</section>
+</section>
+</section>
+<section id="sea-ice-charts" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="sea-ice-charts"><span class="header-section-number">4.5</span> Sea Ice Charts</h2>
+</section>
+<section id="altimeters" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="altimeters"><span class="header-section-number">4.6</span> Altimeters</h2>
+<section id="overview-5" class="level3" data-number="4.6.1">
+<h3 data-number="4.6.1" class="anchored" data-anchor-id="overview-5"><span class="header-section-number">4.6.1</span> Overview</h3>
+</section>
+<section id="icesat-2" class="level3" data-number="4.6.2">
+<h3 data-number="4.6.2" class="anchored" data-anchor-id="icesat-2"><span class="header-section-number">4.6.2</span> ICESat-2</h3>
+</section>
+<section id="cryosat-2" class="level3" data-number="4.6.3">
+<h3 data-number="4.6.3" class="anchored" data-anchor-id="cryosat-2"><span class="header-section-number">4.6.3</span> CryoSat-2</h3>
+</section>
+</section>
+<section id="ai4ice-dataset" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="ai4ice-dataset"><span class="header-section-number">4.7</span> AI4ICE Dataset</h2>
 <p><a href="https://data.dtu.dk/articles/dataset/AI4Arctic_ASIP_Sea_Ice_Dataset_-_version_2/13011134/3">Data</a></p>
 </section>
-<section id="other-resources" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="other-resources"><span class="header-section-number">4.5</span> Other Resources</h2>
+<section id="summary-table-of-instruments-temporal-frequency-extent-and-spatial-resolution" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="summary-table-of-instruments-temporal-frequency-extent-and-spatial-resolution"><span class="header-section-number">4.8</span> Summary Table of Instruments, Temporal Frequency, Extent and Spatial Resolution</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 28%">
+<col style="width: 9%">
+<col style="width: 28%">
+<col style="width: 17%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Instrument</th>
+<th>Temporal Frequency</th>
+<th>Extent</th>
+<th>Spatial Resolution</th>
+<th>File Format</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Sentinel-1</td>
+<td></td>
+<td>400 km Swath</td>
+<td>20 m x 40 m</td>
+<td>GeoTIFF</td>
+</tr>
+<tr class="even">
+<td>AMSR2</td>
+<td>Daily</td>
+<td>Hemispheric</td>
+<td>25 km</td>
+<td>NetCDF</td>
+</tr>
+<tr class="odd">
+<td>SSMI/SMMR</td>
+<td>Daily</td>
+<td>Hemispheric</td>
+<td>25 km, 12.5 km</td>
+<td>NetCDF</td>
+</tr>
+<tr class="even">
+<td>Enhanced Resolution PM</td>
+<td>AM and PM</td>
+<td>Hemispheric</td>
+<td>3.125 km, 6.25 km, 12.5 km</td>
+<td>NetCDF</td>
+</tr>
+<tr class="odd">
+<td>ERA5</td>
+<td>Hourly</td>
+<td>Global</td>
+<td>~30 km</td>
+<td>NetCDF</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="other-resources" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="other-resources"><span class="header-section-number">4.9</span> Other Resources</h2>
 <p><a href="https://www.icelogistics.info/arctic">Polar View Arctic Ice Charts</a><br>
 <a href="https://nsidc.org/data/g10013/versions/1">U.S. National Ice Center Arctic and Antarctic Sea Ice Charts in SIGRID-3 Format</a><br>
 <a href="https://nsidc.org/data/atl07/versions/6">ICESat-2 Sea Ice Height</a><br>
@@ -224,8 +1003,14 @@ ul.task-list li input[type="checkbox"] {
 <a href="https://osi-saf.eumetsat.int/products/sea-ice-products">OSISAF Sea Ice Products</a><br>
 <a href="https://nsidc.org/data/nsidc-0749/versions/1">Quicklook Arctic Weekly EASE-Grid Sea Ice Age, Version 1</a><br>
 <a href="https://nsidc.org/data/nsidc-0611/versions/4">EASE-Grid Sea Ice Age, Version 4</a></p>
+<p><a href="https://www.sarusersmanual.com/ManualPDF/NOAASARManual_CH03_pg081_116.pdf">NOAA SAR Users Manual, Chapter 3, SAR Measurements on Seaice</a></p>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-istomina_updated_2025" class="csl-entry" role="listitem">
+Istomina, Larysa, Hannah Niehaus, and Gunnar Spreen. 2025. <span>“Updated <span>Arctic</span> Melt Pond Fraction Dataset and Trends 2002–2023 Using <span>ENVISAT</span> and <span>Sentinel</span>-3 Remote Sensing Data.”</span> <em>The Cryosphere</em> 19 (1): 83–105. <a href="https://doi.org/10.5194/tc-19-83-2025">https://doi.org/10.5194/tc-19-83-2025</a>.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

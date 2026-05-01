@@ -114,7 +114,7 @@
     "href": "background.html#a-list-of-models-used-for-sea-ice-mapping",
     "title": "3  Machine Learning Methods for Sea Ice Mapping",
     "section": "",
-    "text": "3.1.1 Traditional Machine Learning\ngray-level co-occurrence matrix (GLCM)\nGabor Filters\n\n\n3.1.2 Deep Neural Networks\nSamira splits methods into patch-based and pixel-based.\nPixel-based methods use encoder-decoder networks with skip connections\nPatch-based methods use hierachical feature extraction methods\n\n\n3.1.3 Patch-based classification\nAssign a single label to one image region or patch. This is more computationally efficient.\nMost have used convolutional neural networks (CNN).\nQuestions:\n\nArchitecture\nLayers\nPatch size\nNumber of training images\nLocation of training images\n\nLi et al [12] CNN from Gaofen-3 SAR images\nBoulze et al [13] CNN\n3D-CNN and Squeeze-Excitation (SE) -based networks (Hu et al. 2019) - SE-based networks focus on interdependencies between channels (rather than/as well as) spatial interdependencies and structures.\nHan et al. (2019) computed the gray-level co-occurrence matrix (GLCM). Use K-nearest-neighbour clustering to identify unlabeled neighbouring that are used to increase/boost/ehance label samples. Spectral and spatial dimensions are reduced through a correlation based dimension reduction algorithm.\n\n\n\n\nHan, Yanling, Yi Gao, Yun Zhang, Jing Wang, and Shuhu Yang. 2019. “Hyperspectral Sea Ice Image Classification Based on the Spectral-Spatial-Joint Feature with Deep Learning.” Remote Sensing 11 (18). https://doi.org/10.3390/rs11182170.\n\n\nHu, Jie, Li Shen, Samuel Albanie, Gang Sun, and Enhua Wu. 2019. “Squeeze-and-Excitation Networks.” https://arxiv.org/abs/1709.01507.",
+    "text": "3.1.1 Traditional Machine Learning\ngray-level co-occurrence matrix (GLCM)\nGabor Filters\n\n\n3.1.2 Deep Neural Networks\nSamira splits methods into patch-based and pixel-based.\nPixel-based methods use encoder-decoder networks with skip connections\nPatch-based methods use hierachical feature extraction methods\n\n\n3.1.3 Patch-based classification\nAssign a single label to one image region or patch. This is more computationally efficient.\nMost have used convolutional neural networks (CNN).\nQuestions:\n\nArchitecture\nLayers\nPatch size\nNumber of training images\nLocation of training images\n\nLi et al [12] CNN from Gaofen-3 SAR images\nBoulze et al [13] CNN\n3D-CNN and Squeeze-Excitation (SE) -based networks (hu2019squeezeandexcitationnetworks?) - SE-based networks focus on interdependencies between channels (rather than/as well as) spatial interdependencies and structures.\n(rs11182170?) computed the gray-level co-occurrence matrix (GLCM). Use K-nearest-neighbour clustering to identify unlabeled neighbouring that are used to increase/boost/ehance label samples. Spectral and spatial dimensions are reduced through a correlation based dimension reduction algorithm.",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Machine Learning Methods for Sea Ice Mapping</span>"
     ]
@@ -124,17 +124,47 @@
     "href": "data.html",
     "title": "4  Data",
     "section": "",
-    "text": "4.1 Overview\nA description of the data we are using",
+    "text": "4.1 Overview\nThis section provides an overview of satellite instruments and data commonly used to estimate sea ice variables. Visible, near-infrared, and microwave sensors are used. Table Table 4.1 shows the wavebands for these sensors. However, because the polar regions are dark for part of the year and also the polar regions tend to be cloudy, microwave wavelengths are often preferred because they can operate during polar night and the atmosphere is largely transparent at these wavelengths (Figure 4.1).\nRemote sensing instruments are either passive or active sensors. Passive sensors measure radiation from an external light source (e.g. the Sun or Earth) either reflected, scattered or emitted from a surface. Active sensors provide their own source of radiation and measure the reflected or backscattered signal.\nHere we use focus on active sensors first, in particular Synthetic Aperture Radar.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
     ]
   },
   {
-    "objectID": "data.html#sentinel-1-sar",
-    "href": "data.html#sentinel-1-sar",
+    "objectID": "data.html#overview",
+    "href": "data.html#overview",
     "title": "4  Data",
-    "section": "4.2 Sentinel-1 SAR",
-    "text": "4.2 Sentinel-1 SAR",
+    "section": "",
+    "text": "Table 4.1: Classification of the electromagnetic spectrum by frequency and wavelength\n\n\n\n\n\n\n\n\n\n\nWaveband\nFrequency\nWavelength\n\n\n\n\nMicrowave\n0.3 GHz to 300 GHz\n1 m to 1 mm\n\n\nThermal Infrared\n25 THz to 30 THz\n10 \\(\\mathrm{\\mu m}\\) to 12 \\(\\mathrm{\\mu m}\\)\n\n\nNear-Infrared\n200 THz to 430 THz\n0.7 \\(\\mathrm{\\mu m}\\) to 1.5 \\(\\mathrm{\\mu m}\\)\n\n\nVisible\n430 THz to 1000 THz\n300 \\(\\mathrm{nm}\\) to 700 \\(\\mathrm{nm}\\)\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 4.1: The Opacity of Earth’s Atmosphere",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
+    ]
+  },
+  {
+    "objectID": "data.html#synthetic-aperture-radar",
+    "href": "data.html#synthetic-aperture-radar",
+    "title": "4  Data",
+    "section": "4.2 Synthetic Aperture Radar",
+    "text": "4.2 Synthetic Aperture Radar\n\n4.2.1 Overview\nSensors used for sea ice monitoring\nPenetration depth\nSensitivity to sea ice types\nSensitivity to snow\n\n\n4.2.2 Sentinel-1\n\n4.2.2.1 Overview\nSentinel-1 is a C-Band radar. The Sentinel-1 mission was planned as a two-satellite constellation, with the two satellites sharing the same orbit plane. Sentinel-1A was launched on 3 April 2014. Sentinel-1B was launched 25 April 2016. Sentinel-1B was retired on 23 December 2021 because of a power supply issue. Sentinel-1C was launched 5 December 2024 and Sentinel-1D was launched November 2025.\n\n\n4.2.2.2 Instrument Characteristics\nOrbit: Sun synchronous near-polar orbit with a \\(98.18^\\circ\\) inclination.\nAltitude: 693 km\nRevisit Time: 6 to 12 days depending on regions\nBand: C-Band with central frequency 5.405 GHz\nChannels: Depends on mode (see Table 4.2)\n\n\n\nTable 4.2: Sentinel-1 Modes\n\n\n\n\n\n\n\n\n\n\n\n\n\nMode\nSpatial Resolution (m)\nSwath width (km)\nChannels\nCoverage\nUse\n\n\n\n\nStrip Map (SM)\n5 x 5\n80\nHH, VV, HH+HV, VV+VH\n\nEmergency management on request\n\n\nInterferometric Wide Swath (IW)\n5 x 20\n250\nHH, VV, HH+HV, VV+VH\nLand\ninterferometry\n\n\nExtra Wide (EW) Swath\n20 x 40\n400\nHH, VV, HH+HV, VV+VH\nCoastal, Ocean\nShipping, oil spill, sea ice\n\n\nWave (WV)\n5 x 5\n20\nHH, VV\nOpen ocean\nwave\n\n\n\n\n\n\nExtra Wide Swath mode is the primary mode for sea ice monitoring providing data in HH and HV polarizations. Images are distributed as Ground Range Detected products. Most sea ice regions only have medium resolution images available. Images are constructed from three swaths using the Terrain Observation with Progressive Scanning SAR (TOPSAR) imaging method.\nProducts:\n\nLevel 1 Single Look Complex data: complex images of phase and amplitude\nLevel 1 Ground Range Detected: multi-looked intensity\nLevel 2 Ocean (OCN) data: ocean geophysical parameters\n\n\n\n4.2.2.3 File Format\nProducts are distributed in SAFE format. Each product (“image”) contains a measurement dataset in GeoTIFF. Calibration and other supporting data are in XML format.\n\n\n4.2.2.4 Get Data\nData are available from NASA’s ASF DAAC or Copernicus Hub. Sentinel-1 products are also on Google Earth Engine but processing steps are unclear. Add links\n\n\n4.2.2.5 Reading Files\nGDAL has a driver for SAFE formatted files.\nsatpy has a Sentinel-1 reader and tools.\n\n\n4.2.2.6 Links\nsentinelhub: SAR-Ice, a sea ice RGB composite\n\n\n\n4.2.3 Radarsat\nBand: C-Band\nChannels:\nProducts: Ground Range Detected\nSwath Width:\nResolution:\nRevisit:\nData Products:\n\n\n4.2.4 Radarsat Constellation\nBand: C-Band\nChannels:\nProducts:\nSwath Width:\nResolution:\nRevisit:\nData Products:\n\n\n4.2.5 NISAR\n\n4.2.5.1 Overview\nOnly useful for marginal regions of the Arctic because of the obital geometry and sensor viewing angle. All ocean and sea regions surrounding Antarctica are visible.\nBand: L-Band and S-Band\nChannels:\nProducts: Ground Range Detected\nSwath Width:\nResolution:\nRevisit time:\nData Products:",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
+    ]
+  },
+  {
+    "objectID": "data.html#passive-microwave",
+    "href": "data.html#passive-microwave",
+    "title": "4  Data",
+    "section": "4.3 Passive Microwave",
+    "text": "4.3 Passive Microwave\n\n4.3.1 Overview\nPassive microwave sensors measure electromagnetic radiation in the microwave region that is emitted by the Earth.\n\n\n4.3.2 AMSR2 Daily Polar Gridded Brightness Temperatures\nDaily brightness temperature product produced from the Japanses Aerospace Exploration Agency (JAXA) Advanced Microwave Scanning Radiometer 2 (AMSR2) instrument.\nChannels: 18.7 GHz vertical (v) and horizontal (h), 23.8 GHz (v), and 36.5 GHz (v & h).\nGrid Cell Size: nominally 25 km\nActual Resolution is dependent on frequency\n\n\n\nFrequency (GHz)\nResolution (km)\n\n\n\n\n18.7\n14 x 22\n\n\n36.5\n7 x 12\n\n\n\nCoverage: Northern and Southern Hemispheres\nGrid: NSIDC Polar Stereographic North and South (EPSG:3411, EPSG:3412)\nTime Period: 1 January 2023 to present\nTemporal Frequency: Daily\nNSIDC Dataset Landing Page\nProgrammatic Download:\nimport earthaccess\n\nauth = earthaccess.login()\n\n# Add wildcard search for sensor\nresults = earthaccess.search_data(\n    short_name=\"NSIDC-0802\",\n    spatial=(lonmin, lonmax, latmin, latmax),\n    temporal=(date_begin, date_end),\n    )\n\nfiles = earthaccess.download(results, local_path=\"./\")\n\n\n4.3.3 DMSP SSM/I and SSMIS Daily Polar Gridded Brightness Temperatures\nDaily brightness temperature product produced from orbital swath data from the Special Sensor Microwave/Imager (SSM/I) aboard the Defense Meteorological Program (DMSP) F8, F11 and F13 platforms, and the Special Sensor Microwave Imager/Sounder (SSMIS) aboard DMSP F17 and F18.\nChannels: 19.3 GHz vertical (v) and horizontal (h), 22.2 GHZ (v), 37.0 GHz (v & h), 85.5 GHz (v & h) on SSM/I, and 91.7 GHz (v & h) on SSMIS.\nGrid Cell Size: 85.5 GHz and 91.7 GHz channel data are gridded to 12.5 km cells, all other channels are gridded to 25 km.\nActual resolutions depend of frequency. Footprint are elliptical.\n\n\n\nFrequency (GHz)\nResolution (km)\n\n\n\n\n19.3\n45 x 70\n\n\n37.0\n30 x 38\n\n\n85.0\n14 x 16\n\n\n\nCoverage: North and South Hemisphere\nGrid CRS: NSIDC Polar Stereographic North and South (EPSG:3411, EPSG:3412)\nResampling method: A simple drop-in-the-bucket averaging.\nTime Period: 1978 to present\nNSIDC Dataset Landing Page\nProgrammatic Download:\nimport earthaccess\n\nauth = earthaccess.login()\n\n# Add wildcard search for sensor\nresults = earthaccess.search_data(\n    short_name=\"NSIDC-0001\",\n    spatial=(lonmin, lonmax, latmin, latmax),\n    temporal=(date_begin, date_end),\n    )\n\nfiles = earthaccess.download(results, local_path=\"./\")\n\n\n4.3.4 Calibrated Enhanced-Resolution Passive Microwave Daily EASE-Grid 2.0 Brightness Temperature ESDR\nAn enhanced-resolution, multi-sensor brightness temperature product from passive microwave sensors. Sensors are:\n\nScanning Multichannel Microwave Radiometer (SMMR) on NIMBUS-7\nSpecial Sensor Microwave/Imager (SSM/I) on DMSP 5D-2/F8, F10, F11, F13, F14, DMSP 5D-3/F15\nSpecial Sensor Microwave Imager/Sounder (SSMIS) on DMSP 5D-3/F16, F17, F18, F19\nAdvanced Microwave Scanning Radiometer - Earth Observing System (AMSR-E) on AQUA\nAdvanced Microwave Scanning Radiometer 2 (AMSR2) on GCOM-W1\n\nChannels: multiple, sensor dependent but between 6.6 and 92 GHz\nGrid Cell Size: 25 km (All), 3.125 km (&gt; 30 GHz), 6.25 km (12 GHz to 30 GHz), 12.5 km (&lt; 12 GHz)\nResampling Method: 25 km uses drop-in-the-bucket average, enhanced resultions use Radiometer Version Scatterometer Image Reconstruction (rSIR)\nTime Period: 1987 to Present depending on sensor (AMSR2 and SSMIS F16, F17, F18 all operational)\nTemporal Frequency: Twice Daily\nProgrammatic Download:\nimport earthaccess\n\nauth = earthaccess.login()\n\n# Add wildcard search for sensor\nresults = earthaccess.search_data(\n    short_name=\"NSIDC-0630\",\n    spatial=(lonmin, lonmax, latmin, latmax),\n    temporal=(date_begin, date_end),\n    )\n\nfiles = earthaccess.download(results, local_path=\"./\")",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
+    ]
+  },
+  {
+    "objectID": "data.html#visible-imagery",
+    "href": "data.html#visible-imagery",
+    "title": "4  Data",
+    "section": "4.4 Visible Imagery",
+    "text": "4.4 Visible Imagery\n\n4.4.1 MODIS\nThe MODIS instrument on-board Terra and Aqua Satellites has MODIS Level 1B Calibrated Radiances for the 36 MODIS bands and reflectances for solar refelectance bands 1 through 19 and 26.\nThe MODIS sea ice algorithm uses the following bands from MOD02 MODIS Level 1B Calibrated and Geolocated Radiances. The sea ice algorithm uses the MODIS Land/Water mask, Solar zenith angle, geolocation, and Geoid height from MOD03, and the Unobstructed field of view and day/night glags from MOD35_L2 products.\nThere are three MOD02 products, each product containing bands for one of the three spatial resolutions.\n\n\n\nMOD02 Product\nResolution (m)\nBands\n\n\n\n\nMOD02QKM\n250\n1, 2\n\n\nMOD02HKM\n500\n3-7\n\n\nMOD021KM\n1000\n8-36\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBand\nCentral \\(\\lambda\\) (\\(\\mu m\\))\nLower \\(\\lambda\\) (\\(\\mu m\\))\nUpper \\(\\lambda\\) (\\(\\mu m\\))\nResolution (m)\nPurpose\n\n\n\n\n1\n0.645\n0.620\n0.670\n250\nThreshold\n\n\n2\n0.865\n0.841\n0.876\n250\nThreshold\n\n\n4\n0.555\n0.545\n0.565\n500\nNDSI\n\n\n6\n1.640\n1.628\n1.652\n500\nNDSI\n\n\n31\n11.03\n10.780\n11.280\n1000\nIST\n\n\n32\n12.02\n11.770\n12.270\n1000\nIST\n\n\n\nSea ice is assumed to be snow covered and is mapped based on a normalized difference of surface reflectances between bands 4 and 6, the Normalized Difference Snow Index.\n\\[\nNDSI = \\frac{band4 - band6}{band4 + band6}\n\\]\nPixels are identified as sea ice if the following criteria pass.\n\n\\(NDSI &gt; 4\\)\n\\(band2 &gt; 0.11\\)\n\\(band1 &gt; 0.10\\)\n\nAn Ice Surface Temperature (IST) product is also calculated. Surface radiances from bands 31 and 32 are first converted to brightness temperatures using a version of the Planck function.\n\\[\nT_{\\lambda} = \\frac{c_2 \\nu}{ln\\left(1 + \\left(\\frac{e c_2 \\nu^3}{E}\\right)\\right)}\n\\]\nwhere \\(T_{\\lambda}\\) is brightness temperature in \\(\\mathrm{K}\\), \\(\\nu\\) is central wavelength in \\(\\mathrm{cm^{-1}}\\), E is radiance from the sensor in \\(\\mathrm{m\\,W m^{-2}\\,sr\\,cm^{-4}}\\), \\(e\\) is emmissivity, \\(c_1\\) is \\(1.910659 \\times 10^5\\: \\mathrm{m\\, W m^{-2}\\, sr\\, cm^{-4}}\\), and \\(c_2\\) is \\(1.438833\\: \\mathrm{cm\\, K}\\).\nIST\n\n\n4.4.2 VIIRS\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sagittis posuere ligula sit amet lacinia. Duis dignissim pellentesque magna, rhoncus congue sapien finibus mollis. Ut eu sem laoreet, vehicula ipsum in, convallis erat. Vestibulum magna sem, blandit pulvinar augue sit amet, auctor malesuada sapien. Nullam faucibus leo eget eros hendrerit, non laoreet ipsum lacinia. Curabitur cursus diam elit, non tempus ante volutpat a. Quisque hendrerit blandit purus non fringilla. Integer sit amet elit viverra ante dapibus semper. Vestibulum viverra rutrum enim, at luctus enim posuere eu. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\n\n4.4.3 Sentinel-2\nSentinel-2 is a multi-spectral imager.\nLevel 1C and Level 2A granules are 110 km by 110 km geometrically corrected ortho-images projected onto a Universal Transverse Mercator (UTM) CRS. Geometric corrections remove distortions from surface topography and imaging systems. Granules are designed to overlap.\nLevel 1C data are top-of-atmosphere reflectances. These data are based on Level 1B products that have been radiometrically corrected. Level 1C products include cloud masks and other QA grids.\nLevel 2A products are atmospherically corrected surface reflectance products derived from Level 1C products. In addition to surface reflectance, level 2A products include a Aerosol Optical Thickness (AOT) map, a Water Vapour (WV) map and a Scene Classification (SCL) map.\n\n\n\n\nTable 4.3: Characteristics of Sentinel-2 Bands\n\n\n\n\n\n\nBand\nGrid Size (m)\nCentral Wavelength (nm)\nBandwidth (nm)\nDescription\n\n\n\n\nB01\n60\n443\n20\ncoastal and aerosol detection\n\n\nB02\n10\n490\n65\nblue\n\n\nB03\n10\n560\n35\ngreen\n\n\nB04\n10\n665\n30\nred\n\n\nB05\n20\n705\n15\nred edge\n\n\nB06\n20\n740\n15\nvegetation\n\n\nB07\n20\n783\n20\nvegetation\n\n\nB08\n10\n842\n115\nnear-infrared\n\n\nB8A\n20\n865\n20\nvegetation\n\n\nB09\n60\n945\n20\nwater vapour\n\n\nB10\n60\n1375\n30\ncirrus cloud detection\n\n\nB11\n20\n1610\n90\nshort-wave infrared 1\n\n\nB12\n20\n2190\n180\nshort-wave infrared 1\n\n\n\n\n\n\n\n\nGrid size: 10 m, 20 m or 60 m depending on spectral band.\nDocumentation: Sentinel-2 Products\n\n\n4.4.4 Sentinel-3\nThe main objective of the Sentinel-3 mission is to measure sea surface topography with the Altimetry Surface Topography Mission (STM), sea and land surface temperature with the Sea and Land Surface Temperature Radiometer (SLSTR), and ocean and land surface color with the Ocean and Land Colour Instrument (OLCI)..\nIstomina et al. (2025) used OLCI and SLSTR channels to map melt ponds.\n\n4.4.4.1 SLSTR\nChannels: 2 channels in the visible (555 nm, 660 nm), a near-infrared channel (870 nm) and six thermal infrared channels (1370 to 12000 nm).\nSwath width: 1470 km for nadir swath scanner and 740 km for oblique swath scanner.\nGrid Size and Resolution: Nominal resolution of 500 m.\nTemporal frequency: mean global revisit time is 1.9 days. For 3A and 3B the revisit time is 0.9 days at the equator.\n\n\n4.4.4.2 OLCI\nChannels: 12 channels in the visible wavelengths spanning 400 nm to 753.75 nm, and 9 channels in the near infrared spanning 761.25 nm to 1020 nm.\nSwath Width: 1270 km\nGrid Size and Resolution: the OLCI instrument has a 68.5\\(^\\circ\\) field of view. The nominal spatial resolution is 300m\nTemporal frequency: Orbital cycle is 27 days. Revisit time is 2-3 days.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
     ]
@@ -143,8 +173,18 @@
     "objectID": "data.html#sea-ice-charts",
     "href": "data.html#sea-ice-charts",
     "title": "4  Data",
-    "section": "4.3 Sea Ice Charts",
-    "text": "4.3 Sea Ice Charts",
+    "section": "4.5 Sea Ice Charts",
+    "text": "4.5 Sea Ice Charts",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
+    ]
+  },
+  {
+    "objectID": "data.html#altimeters",
+    "href": "data.html#altimeters",
+    "title": "4  Data",
+    "section": "4.6 Altimeters",
+    "text": "4.6 Altimeters\n\n4.6.1 Overview\n\n\n4.6.2 ICESat-2\n\n\n4.6.3 CryoSat-2",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
     ]
@@ -153,8 +193,18 @@
     "objectID": "data.html#ai4ice-dataset",
     "href": "data.html#ai4ice-dataset",
     "title": "4  Data",
-    "section": "4.4 AI4ICE Dataset",
-    "text": "4.4 AI4ICE Dataset\nData",
+    "section": "4.7 AI4ICE Dataset",
+    "text": "4.7 AI4ICE Dataset\nData",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
+    ]
+  },
+  {
+    "objectID": "data.html#summary-table-of-instruments-temporal-frequency-extent-and-spatial-resolution",
+    "href": "data.html#summary-table-of-instruments-temporal-frequency-extent-and-spatial-resolution",
+    "title": "4  Data",
+    "section": "4.8 Summary Table of Instruments, Temporal Frequency, Extent and Spatial Resolution",
+    "text": "4.8 Summary Table of Instruments, Temporal Frequency, Extent and Spatial Resolution\n\n\n\n\n\n\n\n\n\n\nInstrument\nTemporal Frequency\nExtent\nSpatial Resolution\nFile Format\n\n\n\n\nSentinel-1\n\n400 km Swath\n20 m x 40 m\nGeoTIFF\n\n\nAMSR2\nDaily\nHemispheric\n25 km\nNetCDF\n\n\nSSMI/SMMR\nDaily\nHemispheric\n25 km, 12.5 km\nNetCDF\n\n\nEnhanced Resolution PM\nAM and PM\nHemispheric\n3.125 km, 6.25 km, 12.5 km\nNetCDF\n\n\nERA5\nHourly\nGlobal\n~30 km\nNetCDF",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
     ]
@@ -163,8 +213,8 @@
     "objectID": "data.html#other-resources",
     "href": "data.html#other-resources",
     "title": "4  Data",
-    "section": "4.5 Other Resources",
-    "text": "4.5 Other Resources\nPolar View Arctic Ice Charts\nU.S. National Ice Center Arctic and Antarctic Sea Ice Charts in SIGRID-3 Format\nICESat-2 Sea Ice Height\nICESat-2 Sea Ice Freeboard\nNSIDC Sea Ice Index\nNear-Real-Time DMSP SSMIS Daily Polar Gridded Sea Ice Concentrations\nSea Ice Concentrations from Nimbus-7 SMMR and DMSP SSM/I-SSMIS Passive Microwave Data\nUniversity of Breman Sea Ice\nCopernicus Climate Change Service: Sea Ice\nOSISAF Sea Ice Products\nQuicklook Arctic Weekly EASE-Grid Sea Ice Age, Version 1\nEASE-Grid Sea Ice Age, Version 4",
+    "section": "4.9 Other Resources",
+    "text": "4.9 Other Resources\nPolar View Arctic Ice Charts\nU.S. National Ice Center Arctic and Antarctic Sea Ice Charts in SIGRID-3 Format\nICESat-2 Sea Ice Height\nICESat-2 Sea Ice Freeboard\nNSIDC Sea Ice Index\nNear-Real-Time DMSP SSMIS Daily Polar Gridded Sea Ice Concentrations\nSea Ice Concentrations from Nimbus-7 SMMR and DMSP SSM/I-SSMIS Passive Microwave Data\nUniversity of Breman Sea Ice\nCopernicus Climate Change Service: Sea Ice\nOSISAF Sea Ice Products\nQuicklook Arctic Weekly EASE-Grid Sea Ice Age, Version 1\nEASE-Grid Sea Ice Age, Version 4\nNOAA SAR Users Manual, Chapter 3, SAR Measurements on Seaice\n\n\n\n\nIstomina, Larysa, Hannah Niehaus, and Gunnar Spreen. 2025. “Updated Arctic Melt Pond Fraction Dataset and Trends 2002–2023 Using ENVISAT and Sentinel-3 Remote Sensing Data.” The Cryosphere 19 (1): 83–105. https://doi.org/10.5194/tc-19-83-2025.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data</span>"
     ]
@@ -194,7 +244,7 @@
     "href": "references.html",
     "title": "References",
     "section": "",
-    "text": "Han, Yanling, Yi Gao, Yun Zhang, Jing Wang, and Shuhu Yang. 2019.\n“Hyperspectral Sea Ice Image Classification Based on the\nSpectral-Spatial-Joint Feature with Deep Learning.” Remote\nSensing 11 (18). https://doi.org/10.3390/rs11182170.\n\n\nHu, Jie, Li Shen, Samuel Albanie, Gang Sun, and Enhua Wu. 2019.\n“Squeeze-and-Excitation Networks.” https://arxiv.org/abs/1709.01507.",
+    "text": "Istomina, Larysa, Hannah Niehaus, and Gunnar Spreen. 2025.\n“Updated Arctic Melt Pond Fraction Dataset and Trends\n2002–2023 Using ENVISAT and Sentinel-3 Remote\nSensing Data.” The Cryosphere 19 (1): 83–105. https://doi.org/10.5194/tc-19-83-2025.",
     "crumbs": [
       "References"
     ]
