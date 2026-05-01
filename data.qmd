@@ -84,33 +84,42 @@ GDAL has a driver for SAFE formatted files.
 
 [sentinelhub: SAR-Ice, a sea ice RGB composite](https://custom-scripts.sentinel-hub.com/sentinel-1/sar-ice/)
 
-### Radarsat
+### Radarsat-2
 
 **Band**: C-Band
 
-**Channels**: 
+**Channels**: HH, VV, HV, VH
 
 **Products**: Ground Range Detected
 
-**Swath Width**:
+**Swath Width**: 500 km (ScanSAR Wide mode)
 
-**Resolution**:
+**Resolution**: 100 m
+
+**Near-range Incidence Angle**: $\approx19^\circ$
+
+**Far-range Incidence Angle**: $\approx50^\circ$
 
 **Revisit**:
 
 **Data Products**:
 
+
 ### Radarsat Constellation
 
 **Band**: C-Band
 
-**Channels**: 
+**Channels**: HH, VV, HV, VH
 
-**Products**: 
+**Products**: Low Resolution Mode
 
-**Swath Width**:
+**Swath Width**: 500 km
 
-**Resolution**:
+**Resolution**: 100 m
+
+**Near-range Incidence Angle**: $\approx19^\circ$
+
+**Far-range Incidence Angle**: $\approx53^\circ$
 
 **Revisit**:
 

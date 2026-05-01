@@ -255,7 +255,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#overview-1" id="toc-overview-1" class="nav-link" data-scroll-target="#overview-1"><span class="header-section-number">4.2.1</span> Overview</a></li>
   <li><a href="#sentinel-1" id="toc-sentinel-1" class="nav-link" data-scroll-target="#sentinel-1"><span class="header-section-number">4.2.2</span> Sentinel-1</a></li>
-  <li><a href="#radarsat" id="toc-radarsat" class="nav-link" data-scroll-target="#radarsat"><span class="header-section-number">4.2.3</span> Radarsat</a></li>
+  <li><a href="#radarsat-2" id="toc-radarsat-2" class="nav-link" data-scroll-target="#radarsat-2"><span class="header-section-number">4.2.3</span> Radarsat-2</a></li>
   <li><a href="#radarsat-constellation" id="toc-radarsat-constellation" class="nav-link" data-scroll-target="#radarsat-constellation"><span class="header-section-number">4.2.4</span> Radarsat Constellation</a></li>
   <li><a href="#nisar" id="toc-nisar" class="nav-link" data-scroll-target="#nisar"><span class="header-section-number">4.2.5</span> NISAR</a></li>
   </ul></li>
@@ -480,23 +480,27 @@ Table&nbsp;4.2: Sentinel-1 Modes
 <p><a href="https://custom-scripts.sentinel-hub.com/sentinel-1/sar-ice/">sentinelhub: SAR-Ice, a sea ice RGB composite</a></p>
 </section>
 </section>
-<section id="radarsat" class="level3" data-number="4.2.3">
-<h3 data-number="4.2.3" class="anchored" data-anchor-id="radarsat"><span class="header-section-number">4.2.3</span> Radarsat</h3>
+<section id="radarsat-2" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="radarsat-2"><span class="header-section-number">4.2.3</span> Radarsat-2</h3>
 <p><strong>Band</strong>: C-Band</p>
-<p><strong>Channels</strong>:</p>
+<p><strong>Channels</strong>: HH, VV, HV, VH</p>
 <p><strong>Products</strong>: Ground Range Detected</p>
-<p><strong>Swath Width</strong>:</p>
-<p><strong>Resolution</strong>:</p>
+<p><strong>Swath Width</strong>: 500 km (ScanSAR Wide mode)</p>
+<p><strong>Resolution</strong>: 100 m</p>
+<p><strong>Near-range Incidence Angle</strong>: <span class="math inline">\(\approx19^\circ\)</span></p>
+<p><strong>Far-range Incidence Angle</strong>: <span class="math inline">\(\approx50^\circ\)</span></p>
 <p><strong>Revisit</strong>:</p>
 <p><strong>Data Products</strong>:</p>
 </section>
 <section id="radarsat-constellation" class="level3" data-number="4.2.4">
 <h3 data-number="4.2.4" class="anchored" data-anchor-id="radarsat-constellation"><span class="header-section-number">4.2.4</span> Radarsat Constellation</h3>
 <p><strong>Band</strong>: C-Band</p>
-<p><strong>Channels</strong>:</p>
-<p><strong>Products</strong>:</p>
-<p><strong>Swath Width</strong>:</p>
-<p><strong>Resolution</strong>:</p>
+<p><strong>Channels</strong>: HH, VV, HV, VH</p>
+<p><strong>Products</strong>: Low Resolution Mode</p>
+<p><strong>Swath Width</strong>: 500 km</p>
+<p><strong>Resolution</strong>: 100 m</p>
+<p><strong>Near-range Incidence Angle</strong>: <span class="math inline">\(\approx19^\circ\)</span></p>
+<p><strong>Far-range Incidence Angle</strong>: <span class="math inline">\(\approx53^\circ\)</span></p>
 <p><strong>Revisit</strong>:</p>
 <p><strong>Data Products</strong>:</p>
 </section>
@@ -778,7 +782,7 @@ T_{\lambda} = \frac{c_2 \nu}{ln\left(1 + \left(\frac{e c_2 \nu^3}{E}\right)\righ
 Table&nbsp;4.3: Characteristics of Sentinel-2 Bands
 </figcaption>
 <div aria-describedby="tbl-sentinel2-bands-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
