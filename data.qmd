@@ -2,7 +2,22 @@
 
 ## Overview
 
-A description of the data we are using
+This section provides an overview of satellite instruments and data commonly used to estimate sea ice variables.  Visible, near-infrared, and microwave sensors are used.  Table @tbl-electromagnetic-spectrum shows the wavebands for these sensors.  However, because the polar regions are dark for part of the year and also the polar regions tend to be cloudy, microwave wavelengths are often preferred because they can operate during polar night and the atmosphere is largely transparent at these wavelengths (@fig-atmospheric-opacity).
+
+|Waveband|Frequency|Wavelength|
+|--------|:--------|:---------|
+|Microwave| 0.3 GHz to 300 GHz | 1 m to 1 mm |
+|Thermal Infrared| 25 THz to 30 THz | 10 $\mathrm{\mu m}$ to 12 $\mathrm{\mu m}$ |
+|Near-Infrared| 200 THz to 430 THz | 0.7 $\mathrm{\mu m}$ to 1.5 $\mathrm{\mu m}$ |
+|Visible| 430 THz to 1000 THz | 300 $\mathrm{nm}$ to 700 $\mathrm{nm}$ |
+
+: Classification of the electromagnetic spectrum by frequency and wavelength {#tbl-electromagnetic-spectrum}
+
+![The Opacity of Earth's Atmosphere](https://earthguide.ucsd.edu/eoc/special_topics/teach/sp_climate_change/images/atmo_transmittance_med.jpg){#fig-atmospheric-opacity}
+
+Remote sensing instruments are either passive or active sensors.  Passive sensors measure radiation from an external light source (e.g. the Sun or Earth) either reflected, scattered or emitted from  a surface.  Active sensors provide their own source of radiation and measure the reflected or backscattered signal.
+
+Here we use focus on active sensors first, in particular Synthetic Aperture Radar.  
 
 ## Synthetic Aperture Radar
 
@@ -57,7 +72,7 @@ Products are distributed in SAFE format.  Each product ("image") contains a meas
 
 #### Get Data
 
-Data are available from NASA's ASF DAAC or Copernicus Hub.  Sentinel-1 products are also on Google Earth Engine.  _Add links_
+Data are available from NASA's ASF DAAC or Copernicus Hub.  Sentinel-1 products are also on Google Earth Engine but processing steps are unclear.  _Add links_
 
 #### Reading Files
 
@@ -125,6 +140,8 @@ Only useful for marginal regions of the Arctic because of the obital geometry an
 
 ### Overview
 
+Passive microwave sensors measure electromagnetic radiation in the microwave region that is emitted by the Earth.
+
 ### AMSR2 Daily Polar Gridded Brightness Temperatures
 
 Daily brightness temperature product produced from the Japanses Aerospace
@@ -135,9 +152,38 @@ and 36.5 GHz (v & h).
 
 **Grid Cell Size:** nominally 25 km
 
+_Actual Resolution is dependent on frequency_
+
+|Frequency (GHz)|Resolution (km)|
+|---------------|---------------|
+|18.7|14 x 22|
+|36.5|7 x 12|
+
+**Coverage:** Northern and Southern Hemispheres
+
+**Grid:** NSIDC Polar Stereographic North and South (`EPSG:3411`, `EPSG:3412`)
+
 **Time Period:** 1 January 2023 to present
 
+**Temporal Frequency:**  Daily
+
 [**NSIDC Dataset Landing Page**](https://nsidc.org/data/nsidc-0802)
+
+**Programmatic Download:**
+```{.python}
+import earthaccess
+
+auth = earthaccess.login()
+
+# Add wildcard search for sensor
+results = earthaccess.search_data(
+    short_name="NSIDC-0802",
+    spatial=(lonmin, lonmax, latmin, latmax),
+    temporal=(date_begin, date_end),
+    )
+
+files = earthaccess.download(results, local_path="./")
+```
 
 ### DMSP SSM/I and SSMIS Daily Polar Gridded Brightness Temperatures
 
@@ -153,11 +199,39 @@ F18.
 **Grid Cell Size:** 85.5 GHz and 91.7 GHz channel data are gridded to 12.5 km cells, all
   other channels are gridded to 25 km.
 
+_Actual resolutions depend of frequency.  Footprint are elliptical._
+
+|Frequency (GHz)|Resolution (km)|
+|---------------|---------------|
+|19.3|45 x 70|
+|37.0|30 x 38|
+|85.0|14 x 16|
+
+**Coverage:** North and South Hemisphere
+
+**Grid CRS:** NSIDC Polar Stereographic North and South (`EPSG:3411`, `EPSG:3412`)
+
 **Resampling method:** A simple drop-in-the-bucket averaging.
 
 **Time Period:** 1978 to present
 
 [**NSIDC Dataset Landing Page**](https://nsidc.org/data/nsidc-0001)
+
+**Programmatic Download:**
+```{.python}
+import earthaccess
+
+auth = earthaccess.login()
+
+# Add wildcard search for sensor
+results = earthaccess.search_data(
+    short_name="NSIDC-0001",
+    spatial=(lonmin, lonmax, latmin, latmax),
+    temporal=(date_begin, date_end),
+    )
+
+files = earthaccess.download(results, local_path="./")
+```
 
 ### Calibrated Enhanced-Resolution Passive Microwave Daily EASE-Grid 2.0 Brightness Temperature ESDR
 
@@ -330,6 +404,16 @@ The main objective of the Sentinel-3 mission is to measure sea surface topograph
 ## AI4ICE Dataset
 
 [Data](https://data.dtu.dk/articles/dataset/AI4Arctic_ASIP_Sea_Ice_Dataset_-_version_2/13011134/3)  
+
+## Summary Table of Instruments, Temporal Frequency, Extent and Spatial Resolution
+
+|Instrument|Temporal Frequency|Extent|Spatial Resolution|File Format|
+|----------|------------------|------|------------------|-----------|
+|Sentinel-1||400 km Swath|20 m x 40 m|GeoTIFF|
+|AMSR2|Daily|Hemispheric|25 km|NetCDF|
+|SSMI/SMMR|Daily|Hemispheric|25 km, 12.5 km|NetCDF|
+|Enhanced Resolution PM|AM and PM|Hemispheric|3.125 km, 6.25 km, 12.5 km|NetCDF|
+|ERA5|Hourly|Global|~30 km|NetCDF|
 
 ## Other Resources 
 
